@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/padding_large"
+    android:background="@color/white_back">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="30dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true">
+
+    <RelativeLayout
+
+        android:paddingTop="@dimen/padding_large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/friend"
+            android:scaleType="fitXY"
+            android:paddingTop="@dimen/padding_large"
+            android:paddingBottom="@dimen/padding_large"
+            android:paddingRight="@dimen/padding_large"
+            android:paddingLeft="@dimen/padding_large"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/text_black"
+            android:text="如东政协移动办公"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:paddingBottom="@dimen/padding_small"
+        android:paddingTop="@dimen/padding_small">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/login_et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center_horizontal"
+            android:hint="请输入手机号"
+            android:textSize="@dimen/text_normal"
+            android:inputType="phone"
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_small"
+        >
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/login_et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请输入密码"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_normal"
+            android:inputType="textPassword"
+            />
+
+    </LinearLayout>
+
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:id="@+id/login_rl_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/rect_red"
+        android:layout_marginTop="40dp"
+        >
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登录"
+            android:textSize="@dimen/text_large"
+            android:textColor="@color/white_back"
+            android:layout_centerInParent="true"
+            />
+    </com.gc.materialdesign.views.ButtonRectangle>
+</LinearLayout>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/av_loading"
+        android:layout_width="@dimen/loading_size"
+        android:layout_height="@dimen/loading_size"
+        app:indicatorColor="@color/title"
+        android:layout_centerInParent="true"
+        app:indicatorName="LineSpinFadeLoaderIndicator" />
+</RelativeLayout>

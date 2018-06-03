@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:scrollbars="none"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/transport_loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+    </LinearLayout>
+
+    <com.example.ysl.mywps.ui.view.MatchListView
+        android:id="@+id/fragment_documents_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/arrow"
+        android:layout_below="@+id/transport_loading"
+        android:dividerHeight="0.5dp"
+        android:scrollbars="none"
+        ></com.example.ysl.mywps.ui.view.MatchListView>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/av_loading"
+        android:layout_width="@dimen/loading_size"
+        android:layout_height="@dimen/loading_size"
+        app:indicatorColor="@color/title"
+        android:layout_centerInParent="true"
+        app:indicatorName="LineSpinFadeLoaderIndicator" />
+
+
+</RelativeLayout>
+
+</ScrollView>

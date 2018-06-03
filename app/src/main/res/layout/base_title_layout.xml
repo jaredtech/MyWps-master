@@ -1,0 +1,90 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_basetitle_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:orientation="vertical"
+    android:background="@color/tool_bar"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:id="@+id/tittle_rl_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tool_bar"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+
+        >
+
+        <LinearLayout
+            android:id="@+id/title_ll_back"
+            android:layout_width="60dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="@dimen/padding_large"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+
+            >
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/back"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/title_tv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text=""
+                android:textColor="@color/white_back"
+                android:textSize="@dimen/text_large" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/title_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="标题"
+            android:textColor="@color/white_back"
+            android:textSize="@dimen/text_title"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+
+            />
+
+        <com.example.ysl.mywps.ui.view.IconTextView
+            android:id="@+id/title_tv_right1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="&#xe62a;"
+            android:layout_toLeftOf="@+id/title_tv_right"
+            android:textColor="@color/white_back"
+            android:layout_marginRight="@dimen/padding_left"
+            android:visibility="gone"
+            android:textSize="@dimen/icon_normal" />
+        <com.example.ysl.mywps.ui.view.IconTextView
+            android:id="@+id/title_tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:text="&#xe6b4;"
+            android:textColor="@color/white_back"
+            android:textSize="@dimen/icon_normal" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+
+

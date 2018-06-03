@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/top_search_back"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/arrow"
+    android:paddingBottom="@dimen/margin_small"
+    android:paddingTop="@dimen/margin_small"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="下载公文"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_normal" />
+
+</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/stay_back"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        >
+
+        <com.example.ysl.mywps.ui.view.IconTextView
+            android:id="@+id/document_doc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&#xe6ea;"
+            android:textColor="@color/rect_light_blue"
+            android:textSize="40dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下载公文"
+            android:layout_toRightOf="@+id/document_doc"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/text_small"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/arrow"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="公文信息"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/text_normal" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/stay_back"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/padding_small"
+            android:paddingTop="@dimen/padding_small"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="公文编号: "
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/text_large" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="test02"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/text_small" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/padding_small"
+            android:paddingTop="@dimen/padding_small"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="标题: "
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/text_large" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1215454test02"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/text_small" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/padding_small"
+            android:paddingTop="@dimen/padding_small"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="正文: "
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/text_large" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sssssssss"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/text_small" />
+        </LinearLayout>
+</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/arrow"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="审批意见"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/text_normal" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/stay_back"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        >
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="@drawable/button_light_gray"
+    android:textSize="@dimen/text_normal"
+    />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/arrow"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="转发部门"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/text_normal" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/top_search_back"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+          android:orientation="vertical"
+            android:background="@drawable/button_light_gray"
+            android:paddingBottom="@dimen/margin_small"
+            android:paddingTop="@dimen/margin_small"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/margin_small"
+                android:paddingTop="@dimen/margin_small"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:background="@color/top_search_back"
+                >
+                <com.example.ysl.mywps.ui.view.IconTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&#xe69a;"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/icon_normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="行政部"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/margin_small"
+                android:paddingTop="@dimen/margin_small"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:background="@color/top_search_back"
+                >
+                <com.example.ysl.mywps.ui.view.IconTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&#xe69a;"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/icon_normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="财政部"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/margin_small"
+                android:paddingTop="@dimen/margin_small"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:background="@color/top_search_back"
+                >
+                <com.example.ysl.mywps.ui.view.IconTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&#xe69a;"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/icon_normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="市场部"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/margin_small"
+                android:paddingTop="@dimen/margin_small"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:background="@color/top_search_back"
+                >
+                <com.example.ysl.mywps.ui.view.IconTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&#xe69a;"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/icon_normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="人力资源部"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/margin_small"
+                android:paddingTop="@dimen/margin_small"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:background="@color/top_search_back"
+                >
+                <com.example.ysl.mywps.ui.view.IconTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&#xe69a;"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/icon_normal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="第一关景区"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

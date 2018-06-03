@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_back"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+
+        android:background="@color/white_back"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/wpcdetal_pb_top"
+            style="@style/myprogress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+
+        <RelativeLayout
+            android:id="@+id/wpcdetail_rl_loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/title"
+            android:paddingBottom="@dimen/padding_small"
+            android:paddingTop="@dimen/padding_small">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="正在下载中~~"
+                android:textColor="@color/white_back"
+                android:textSize="@dimen/text_small" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/wpcdetail_rl_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7">
+
+            <ListView
+                android:id="@+id/wpcdetail_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/stay_back"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+
+            </ListView>
+
+            <com.example.ysl.mywps.ui.view.MoviewImage
+                android:id="@+id/wpcdetail_iv_icon"
+                android:layout_width="120dp"
+                android:layout_height="90dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/dash1dp"
+                android:padding="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="15dp" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/tool_bar"
+            android:paddingBottom="@dimen/padding_small"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/padding_small">
+
+            <LinearLayout
+                android:id="@+id/wpcdetail_ll_artical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/wpcdetail_iv_artical"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/artical" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="正文"
+                    android:textColor="@color/white_back"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/wpcdetail_ll_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/wpcdetail_iv_message"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/wpcdetail_message" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="信息"
+                    android:textColor="@color/white_back"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/wpcdetail_ll_sign"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/wpcdetail_iv_sign"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/sign" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="签署"
+                    android:textColor="@color/white_back"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/wpcdetail_ll_send"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/wpcdetail_iv_send"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/send_message" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="发送"
+                    android:textColor="@color/white_back"
+                    android:textSize="@dimen/text_normal" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/av_loading"
+        android:layout_width="@dimen/loading_size"
+        android:layout_height="@dimen/loading_size"
+        android:layout_centerInParent="true"
+        app:indicatorColor="@color/title"
+        app:indicatorName="LineSpinFadeLoaderIndicator" />
+
+
+
+</RelativeLayout>

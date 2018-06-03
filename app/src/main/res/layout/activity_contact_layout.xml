@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_back"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/contact_rl_bottom"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/stay_back"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/paddingVertical"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/paddingVertical">
+
+            <com.example.ysl.mywps.ui.view.IconTextView
+                android:id="@+id/contact_itv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/top_search_back"
+                android:text="&#xe639;"
+                android:textColor="@color/arrow"
+                android:textSize="@dimen/icon_large" />
+
+            <EditText
+                android:id="@+id/contact_et_search"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@drawable/empty_editext_gray"
+                android:hint="请输入要查找的用户名或者电话号码"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:textColor="@color/black_panit"
+                android:textSize="@dimen/text_small" />
+        </LinearLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="10dp"
+    android:background="@color/white_back"
+    ></RelativeLayout>
+        <ListView
+            android:id="@+id/contact_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/arrow"
+            android:dividerHeight="0.5dp"></ListView>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/contact_rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/paddingVertical"
+        android:paddingBottom="@dimen/paddingVertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:layout_alignParentBottom="true"
+        android:background="@color/stay_back"
+        android:visibility="gone"
+        >
+
+        <CheckBox
+            android:id="@+id/contact_cb_all"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/cb_back"
+            android:button="@null"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:id="@+id/contact_tv_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全选"
+ android:layout_toRightOf="@+id/contact_cb_all"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/padding_small"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            >
+            <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/contact_bt_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@color/rect_red"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="确认"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white_back"
+                    android:textSize="@dimen/text_normal"
+                    />
+            </com.gc.materialdesign.views.ButtonRectangle>
+            <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/contact_bt_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@color/white_back"
+android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="取消"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/black_panit"
+                    android:textSize="@dimen/text_normal"
+                    />
+            </com.gc.materialdesign.views.ButtonRectangle>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/av_loading"
+        android:layout_width="@dimen/loading_size"
+        android:layout_height="@dimen/loading_size"
+        android:layout_centerInParent="true"
+        app:indicatorColor="@color/title"
+        app:indicatorName="LineSpinFadeLoaderIndicator" />
+
+
+</RelativeLayout>

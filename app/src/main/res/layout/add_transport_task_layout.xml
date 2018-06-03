@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_transport_ll_progress2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/fragment_transport_ll_progress1"
+        >
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/paddingVertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/paddingVertical"
+                android:paddingLeft="@dimen/paddingVertical"
+                android:paddingTop="@dimen/padding_small"
+                android:paddingBottom="@dimen/padding_small"
+                >
+                <ImageView
+                    android:id="@+id/documents_item_icon2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="fitXY"
+                    android:background="@mipmap/ft_doc_l"
+                    />
+                <RelativeLayout
+                    android:layout_toRightOf="@+id/documents_item_icon2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/padding_large"
+                    android:layout_centerVertical="true"
+                    >
+                    <TextView
+                        android:id="@+id/documents_item_title2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="社情名义"
+                        android:textColor="@color/black_panit"
+                        android:textSize="@dimen/text_large"
+                        android:ellipsize="marquee"
+                        android:singleLine="true"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        />
+
+                    <TextView
+                        android:id="@+id/documents_item_time2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2017-01-20 14:33  "
+                        android:layout_below="@+id/documents_item_title2"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginTop="@dimen/padding_small"
+                        android:textSize="@dimen/text_normal"
+                        android:ellipsize="marquee"
+                        android:singleLine="true"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        />
+                    <TextView
+                        android:id="@+id/documents_item_size2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20kb "
+                        android:layout_toRightOf="@+id/documents_item_time2"
+                        android:layout_below="@+id/documents_item_title2"
+                        android:textColor="@color/text_gray"
+                        android:layout_marginTop="@dimen/padding_small"
+                        android:textSize="@dimen/text_normal"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:ellipsize="marquee"
+                        android:singleLine="true"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        />
+
+                    <ProgressBar
+                        android:id="@+id/transport_prgress_upload2"
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:layout_below="@+id/documents_item_time2"
+                        style="@style/myprogress"
+                        android:layout_marginTop="@dimen/paddingVertical"
+                        />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/line1"
+        android:layout_below="@+id/fragment_transport_ll_progress1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/arrow"
+        android:layout_marginTop="@dimen/paddingVertical"
+        ></RelativeLayout>
+    </LinearLayout>
+

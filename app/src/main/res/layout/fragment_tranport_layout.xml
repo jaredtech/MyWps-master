@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/stay_back"
+            android:orientation="horizontal"
+
+            >
+
+            <RelativeLayout
+                android:id="@+id/material_ll_download"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/material_tv_download"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="下载列表"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_title" />
+
+                <RelativeLayout
+                    android:id="@+id/material_rl_download"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.76dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="2dp"
+                    android:background="@color/tool_bar"></RelativeLayout>
+            </RelativeLayout>
+
+            <!--<RelativeLayout-->
+
+                <!--android:layout_width="1dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_marginBottom="@dimen/padding_large"-->
+                <!--android:layout_marginTop="@dimen/padding_large"-->
+                <!--android:background="@color/text_gray"></RelativeLayout>-->
+
+            <RelativeLayout
+                android:id="@+id/material_ll_upload"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/material_tv_upload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="上传列表"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/text_title" />
+
+                <RelativeLayout
+                    android:id="@+id/material_rl_upload"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.76dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="2dp"
+
+                    android:background="@color/tool_bar"></RelativeLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/fragment_transport_viewpager"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/webview_progerss"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        style="@style/myprogress"
+        />
+
+    <WebView
+        android:layout_below="@+id/webview_progerss"
+        android:id="@+id/webview_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ></WebView>
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/av_loading"
+        android:layout_width="@dimen/loading_size"
+        android:layout_height="@dimen/loading_size"
+        android:layout_centerInParent="true"
+        app:indicatorColor="@color/title"
+        android:visibility="gone"
+        app:indicatorName="LineSpinFadeLoaderIndicator" />
+
+</RelativeLayout>

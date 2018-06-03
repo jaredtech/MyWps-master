@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_back"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/stay_back"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/paddingVertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/paddingVertical">
+
+        <com.example.ysl.mywps.ui.view.IconTextView
+            android:id="@+id/contact_itv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/top_search_back"
+            android:text="&#xe639;"
+            android:textColor="@color/arrow"
+            android:textSize="@dimen/icon_large" />
+
+        <EditText
+            android:id="@+id/contact_et_search"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/empty_editext_gray"
+            android:hint="请输入要查找的內容"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:textColor="@color/black_panit"
+            android:textSize="@dimen/text_small" />
+    </LinearLayout>
+</LinearLayout>

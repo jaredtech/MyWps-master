@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white_back"
+    android:paddingBottom="5dp"
+    >
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/material_top_picture"
+        >
+        <ImageView
+        android:id="@+id/material_pop_iv_picture"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@mipmap/circle_yellow"
+        android:layout_centerInParent="true"
+        android:clickable="false"
+        />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/material_pictures"
+            android:layout_centerInParent="true"
+            android:clickable="false"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_panit"
+            android:text="图片"
+            android:layout_below="@+id/material_pop_iv_picture"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/text_normal"
+            android:layout_marginTop="20dp"
+            android:clickable="false"
+
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/material_top_documents"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        >
+        <ImageView
+            android:id="@+id/material_pop_iv_documents"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@mipmap/circle_light_blue"
+            android:layout_centerInParent="true"
+            android:clickable="false"
+
+            />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/material_documents"
+            android:layout_centerInParent="true"
+            android:clickable="false"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_panit"
+            android:text="文档"
+            android:layout_below="@+id/material_pop_iv_documents"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/text_normal"
+            android:layout_marginTop="20dp"
+            android:clickable="false"
+
+            />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/material_top_video"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        >
+        <ImageView
+            android:id="@+id/material_pop_iv_video"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@mipmap/circle_orange"
+            android:clickable="false"
+
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/material_videos"
+            android:layout_centerInParent="true"
+            android:clickable="false"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_panit"
+            android:text="视频"
+            android:layout_below="@+id/material_pop_iv_video"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/text_normal"
+            android:clickable="false"
+
+            android:layout_marginTop="20dp"
+            />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/material_top_application"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        >
+        <ImageView
+            android:id="@+id/material_pop_iv_application"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@mipmap/circle_orange"
+
+            android:clickable="false"
+            android:layout_centerInParent="true"
+            />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/material_application"
+
+            android:clickable="false"
+            android:layout_centerInParent="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_panit"
+            android:text="应用"
+            android:layout_below="@+id/material_pop_iv_application"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/text_normal"
+
+            android:clickable="false"
+            android:layout_marginTop="20dp"
+            />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white_back"
+    android:orientation="vertical">
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="vertical"
+     >
+
+
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="20dp"
+         android:paddingBottom="@dimen/padding_small"
+         android:paddingLeft="@dimen/activity_horizontal_margin"
+         android:paddingTop="@dimen/padding_small">
+
+         <TextView
+             android:id="@+id/commit_tv_dept"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="拟文单位: 四川成都环球中心"
+             android:textColor="@color/text_black"
+             android:textSize="@dimen/text_large" />
+
+     </RelativeLayout>
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="20dp"
+         android:paddingBottom="@dimen/padding_small"
+         android:paddingLeft="@dimen/activity_horizontal_margin"
+         android:paddingTop="@dimen/padding_small">
+
+         <TextView
+             android:id="@+id/commit_tv_title"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="公文标题: **************报告"
+             android:textColor="@color/text_black"
+             android:textSize="@dimen/text_large"
+             android:layout_alignParentTop="true"
+             android:layout_alignParentLeft="true"
+             android:layout_alignParentStart="true" />
+
+     </RelativeLayout>
+
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="20dp"
+
+         android:paddingBottom="@dimen/padding_small"
+         android:paddingLeft="@dimen/activity_horizontal_margin"
+         android:paddingTop="@dimen/padding_small">
+
+         <TextView
+             android:id="@+id/commit_tv_people"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="呈报人:张**"
+             android:textColor="@color/text_black"
+             android:textSize="@dimen/text_large" />
+
+     </RelativeLayout>
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="20dp"
+
+         android:paddingBottom="@dimen/padding_small"
+         android:paddingLeft="@dimen/activity_horizontal_margin"
+         android:paddingTop="@dimen/padding_small">
+
+         <TextView
+             android:id="@+id/commit_tv_opinion"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="审核意见:"
+             android:textColor="@color/text_black"
+             android:textSize="@dimen/text_large" />
+
+     </RelativeLayout>
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="20dp"
+
+         android:paddingBottom="@dimen/padding_small"
+         android:paddingLeft="@dimen/activity_horizontal_margin"
+         android:paddingRight="@dimen/activity_horizontal_margin"
+         android:paddingTop="@dimen/padding_small">
+
+         <EditText
+             android:id="@+id/commit_et_opinion"
+             android:layout_width="match_parent"
+             android:layout_height="130dp"
+             android:background="@drawable/recentage_gray"
+             android:gravity="top"
+             android:hint="请填写审核意见"
+             android:paddingLeft="@dimen/padding_small"
+             android:paddingTop="@dimen/text_small"
+             android:textSize="@dimen/text_small" />
+
+     </RelativeLayout>
+
+
+
+
+         <com.gc.materialdesign.views.ButtonRectangle
+             android:id="@+id/commit_rl_upload"
+             android:layout_width="match_parent"
+             android:layout_height="55dp"
+             android:layout_marginTop="20dp"
+             android:layout_marginLeft="@dimen/activity_horizontal_margin"
+             android:layout_marginRight="@dimen/activity_horizontal_margin"
+             android:background="@color/rect_red"
+             android:paddingBottom="@dimen/padding_small"
+             android:paddingTop="@dimen/padding_small">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_centerInParent="true"
+                 android:layout_centerVertical="true"
+                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                 android:text="提交"
+                 android:textColor="@color/white_back"
+                 android:textSize="@dimen/text_large" />
+
+         </com.gc.materialdesign.views.ButtonRectangle>
+
+
+
+
+ </LinearLayout>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/av_loading"
+        android:layout_width="@dimen/loading_size"
+        android:layout_height="@dimen/loading_size"
+        app:indicatorColor="@color/title"
+        android:layout_centerInParent="true"
+        app:indicatorName="LineSpinFadeLoaderIndicator" />
+</RelativeLayout>

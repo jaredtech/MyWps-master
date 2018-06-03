@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/stay_back"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tool_bar"
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:visibility="gone"
+       >
+
+        <com.example.ysl.mywps.ui.view.IconTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/contact_title"
+            android:textColor="@color/white_back"
+            android:textSize="@dimen/icon_normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="通讯录"
+            android:textColor="@color/white_back"
+            android:textSize="@dimen/text_title" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/margin_small"
+        android:background="@drawable/button_light_gray"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingTop="@dimen/margin_small">
+
+        <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@color/white_back"
+           android:gravity="center_vertical"
+           android:orientation="horizontal"
+           android:paddingLeft="@dimen/activity_horizontal_margin"
+           android:paddingRight="@dimen/activity_horizontal_margin"
+         >
+
+           <com.example.ysl.mywps.ui.view.IconTextView
+               android:id="@+id/contact_itv_search"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@color/white_back"
+               android:text="&#xe639;"
+               android:textColor="@color/arrow"
+               android:textSize="@dimen/icon_large" />
+
+           <EditText
+               android:id="@+id/contact_et_search"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:background="@null"
+               android:hint="请输入要查找的用户名或者电话号码"
+               android:paddingLeft="@dimen/activity_horizontal_margin"
+               android:textColor="@color/black_panit"
+               android:textSize="@dimen/text_small" />
+       </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_back"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/margin_small">
+
+        <RelativeLayout
+            android:id="@+id/contact_rl_at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/rect_orange"
+            android:paddingLeft="@dimen/padding_small"
+            android:paddingRight="@dimen/padding_small"
+            android:paddingBottom="@dimen/padding_small"
+            android:paddingTop="@dimen/padding_small">
+
+            <com.example.ysl.mywps.ui.view.IconTextView
+                android:id="@+id/contact_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="&#xe682;"
+                android:textColor="@color/white_back"
+                android:textSize="@dimen/text_normal" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:text="企业联系人"
+            android:textColor="@color/text_black"
+            android:layout_toRightOf="@+id/contact_rl_at"
+            android:textSize="@dimen/text_large" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/padding_small"
+        android:paddingTop="@dimen/padding_small"
+        >
+         <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="企业通讯录"
+        android:textColor="@color/text_gray"
+        android:layout_toRightOf="@+id/contact_rl_at"
+        android:textSize="@dimen/text_small" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/white_back"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        >
+        <ListView
+            android:id="@+id/contact_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/arrow"
+            android:scrollbars="none"
+            android:dividerHeight="0.5dp"
+            ></ListView>
+
+    </LinearLayout>
+
+</LinearLayout>

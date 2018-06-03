@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">如东政协</string>
+    <string name="message_title">&#xe62a;</string>
+    <string name="contact_title">&#xe6b7;</string>
+    <string name="work_title">&#xe65a;</string>
+    <string name="material_right">"&#xe639;</string>
+    <string name="version_code">3</string>
+    <string name="version_name">3.0</string>
+
+</resources>

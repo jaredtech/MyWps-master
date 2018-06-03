@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/ll_dismiss"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="4"
+        android:background="@color/tool_bar"
+        android:alpha="0.5"
+        ></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="50dp"
+        android:paddingTop="40dp"
+        android:orientation="vertical"
+        android:background="@color/white_back"
+
+        >
+
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:id="@+id/popupwind_bt_photo"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/rect_red"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="拍照"
+                android:textSize="@dimen/text_large"
+                android:textColor="@color/white_back"
+                android:layout_centerInParent="true"
+                />
+        </com.gc.materialdesign.views.ButtonRectangle>
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:id="@+id/popupwind_bt_video"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/rect_red"
+            android:layout_marginTop="20dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="录制视频"
+                android:textSize="@dimen/text_large"
+                android:textColor="@color/white_back"
+                android:layout_centerInParent="true"
+                />
+        </com.gc.materialdesign.views.ButtonRectangle>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

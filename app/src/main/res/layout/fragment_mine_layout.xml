@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_back"
+    android:orientation="vertical"
+    android:scrollbars="none"
+    >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:background="@color/tool_bar"
+        android:visibility="gone"
+        >
+        <com.example.ysl.mywps.ui.view.IconTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/message_title"
+            android:textSize="@dimen/icon_normal"
+            android:textColor="@color/white_back"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white_back"
+            android:textSize="@dimen/text_title"
+            android:text="我的 "
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/recentage_gray"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/margin_small"
+        android:paddingRight="@dimen/margin_small"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="如东政协"
+                android:textColor="@color/text_stay"
+                android:textSize="@dimen/text_normal" />
+
+            <com.example.ysl.mywps.ui.view.IconTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="&#xe62c;"
+                android:textColor="@color/arrow"
+                android:textSize="40sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/mine_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/text_large" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@color/top_search_back"></RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/margin_small"
+            android:paddingLeft="@dimen/margin_small"
+            android:paddingRight="@dimen/margin_small"
+            android:paddingTop="@dimen/margin_small">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="我的名片"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/text_small" />
+
+            <com.example.ysl.mywps.ui.view.IconTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="&#xe69a;"
+                android:textColor="@color/arrow"
+                android:textSize="@dimen/icon_normal" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_large"
+        android:layout_marginTop="@dimen/padding_large"
+        android:background="@color/white_back"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/margin_small">
+
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/mine_rl_shou"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/rect_orange"-->
+            <!--android:paddingBottom="@dimen/padding_small"-->
+            <!--android:paddingLeft="@dimen/padding_small"-->
+            <!--android:paddingRight="@dimen/padding_small"-->
+            <!--android:paddingTop="@dimen/padding_small">-->
+
+            <!--<com.example.ysl.mywps.ui.view.IconTextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:text="&#xe601;"-->
+                <!--android:textColor="@color/white_back"-->
+                <!--android:textSize="@dimen/icon_normal" />-->
+
+        <!--</RelativeLayout>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+            <!--android:layout_toRightOf="@+id/mine_rl_shou"-->
+            <!--android:text="收藏"-->
+            <!--android:textColor="@color/text_black"-->
+            <!--android:textSize="@dimen/text_large" />-->
+
+        <!--<com.example.ysl.mywps.ui.view.IconTextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:text="&#xe679;"-->
+            <!--android:textColor="@color/arrow"-->
+            <!--android:textSize="@dimen/icon_normal" />-->
+
+    <!--</RelativeLayout>-->
+
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0.1dp"-->
+        <!--android:background="@color/arrow"-->
+        <!--android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+        <!--android:layout_marginRight="@dimen/activity_horizontal_margin"-->
+        <!--/>-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="@dimen/margin_small"-->
+        <!--android:layout_marginTop="@dimen/margin_small"-->
+        <!--android:background="@color/white_back"-->
+        <!--android:paddingBottom="@dimen/margin_small"-->
+        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+        <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
+        <!--android:paddingTop="@dimen/margin_small">-->
+
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/mine_rl_dai"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/rect_orange"-->
+            <!--android:paddingBottom="@dimen/padding_small"-->
+            <!--android:paddingLeft="@dimen/padding_small"-->
+            <!--android:paddingRight="@dimen/padding_small"-->
+            <!--android:paddingTop="@dimen/padding_small">-->
+
+            <!--<com.example.ysl.mywps.ui.view.IconTextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:text="&#xe63f;"-->
+                <!--android:textColor="@color/white_back"-->
+                <!--android:textSize="@dimen/icon_normal" />-->
+
+        <!--</RelativeLayout>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+            <!--android:layout_toRightOf="@+id/mine_rl_dai"-->
+            <!--android:text="代办"-->
+            <!--android:textColor="@color/text_black"-->
+            <!--android:textSize="@dimen/text_large" />-->
+
+        <!--<com.example.ysl.mywps.ui.view.IconTextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:text="&#xe679;"-->
+            <!--android:textColor="@color/arrow"-->
+            <!--android:textSize="@dimen/icon_normal" />-->
+
+    <!--</RelativeLayout>-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0.5dp"-->
+        <!--android:background="@color/arrow"-->
+        <!--android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+        <!--android:layout_marginRight="@dimen/activity_horizontal_margin"-->
+        <!--/>-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="@dimen/margin_small"-->
+        <!--android:layout_marginTop="@dimen/margin_small"-->
+        <!--android:background="@color/white_back"-->
+        <!--android:paddingBottom="@dimen/margin_small"-->
+        <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+        <!--android:paddingRight="@dimen/activity_horizontal_margin"-->
+        <!--android:paddingTop="@dimen/margin_small">-->
+
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/mine_rl_hong"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/rect_red"-->
+            <!--android:paddingBottom="@dimen/padding_small"-->
+            <!--android:paddingLeft="@dimen/padding_small"-->
+            <!--android:paddingRight="@dimen/padding_small"-->
+            <!--android:paddingTop="@dimen/padding_small">-->
+
+            <!--<com.example.ysl.mywps.ui.view.IconTextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:text="&#xe61b;"-->
+                <!--android:textColor="@color/white_back"-->
+                <!--android:textSize="@dimen/icon_normal" />-->
+
+        <!--</RelativeLayout>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+            <!--android:layout_toRightOf="@+id/mine_rl_hong"-->
+            <!--android:text="红包"-->
+            <!--android:textColor="@color/text_black"-->
+            <!--android:textSize="@dimen/text_large" />-->
+
+        <!--<com.example.ysl.mywps.ui.view.IconTextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:text="&#xe679;"-->
+            <!--android:textColor="@color/arrow"-->
+            <!--android:textSize="@dimen/icon_normal" />-->
+
+    </RelativeLayout>
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0.5dp"-->
+        <!--android:background="@color/arrow"-->
+        <!--android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+        <!--android:layout_marginRight="@dimen/activity_horizontal_margin"-->
+        <!--/>-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_small"
+        android:background="@color/white_back"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:visibility="gone"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/margin_small">
+
+        <RelativeLayout
+            android:id="@+id/mine_rl_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/rect_green"
+            android:paddingBottom="@dimen/padding_small"
+            android:paddingLeft="@dimen/padding_small"
+            android:paddingRight="@dimen/padding_small"
+            android:paddingTop="@dimen/padding_small">
+
+            <com.example.ysl.mywps.ui.view.IconTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="&#xe634;"
+                android:textColor="@color/white_back"
+                android:textSize="@dimen/icon_normal" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_toRightOf="@+id/mine_rl_setting"
+            android:text="设置"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/text_large" />
+
+        <com.example.ysl.mywps.ui.view.IconTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="&#xe679;"
+            android:textColor="@color/arrow"
+            android:textSize="@dimen/icon_normal" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/arrow"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:visibility="gone"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin">
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:id="@+id/mine_rl_loginout"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="@color/rect_red"
+            android:paddingBottom="@dimen/padding_small"
+            android:paddingTop="@dimen/padding_small">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:text="退出登录 "
+                android:textColor="@color/white_back"
+                android:textSize="@dimen/text_large" />
+
+
+        </com.gc.materialdesign.views.ButtonRectangle>
+    </RelativeLayout>
+
+</LinearLayout>
+
+</ScrollView>

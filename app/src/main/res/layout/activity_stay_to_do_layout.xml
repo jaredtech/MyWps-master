@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#2B3435"
+        android:orientation="horizontal"
+        >
+        <RelativeLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/stay_tv_stay_do"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="代办事项"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white_back"
+                android:textSize="@dimen/text_title" />
+
+            <RelativeLayout
+                android:id="@+id/stay_rl_stay_do"
+                android:layout_width="match_parent"
+                android:layout_height="3.8dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="-2dp"
+                android:background="@color/message_back"></RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/stay_tv_have_do"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="已办事项"
+                android:textColor="@color/text_stay"
+                android:textSize="@dimen/text_title"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp" />
+
+            <RelativeLayout
+                android:id="@+id/stay_rl_have_do"
+                android:layout_width="match_parent"
+                android:layout_height="3.8dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="-2dp"
+                android:background="@color/message_back"
+                android:visibility="gone"></RelativeLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/stay_rl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </android.support.v4.view.ViewPager>
+
+
+</LinearLayout>

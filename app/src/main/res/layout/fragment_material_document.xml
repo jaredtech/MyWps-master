@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/padding_small"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:id="@+id/fragment_ll_all"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fragment_documents_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="3dp"
+                    android:clickable="false"
+                    android:scaleType="fitXY"
+                    android:text="全部"
+                    android:textColor="@color/black_panit"
+                    android:textSize="@dimen/text_small" />
+
+                <RelativeLayout
+                    android:id="@+id/fragment_documents_rl_all"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="-3dp"
+                    android:background="@color/tool_bar"></RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fragment_ll_picture"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fragment_documents_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="3dp"
+                    android:clickable="false"
+                    android:scaleType="fitXY"
+                    android:text="图片"
+                    android:textColor="@color/black_panit"
+                    android:textSize="@dimen/text_small" />
+
+                <RelativeLayout
+                    android:id="@+id/fragment_documents_rl_picture"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="-3dp"
+                    android:background="@color/tool_bar"></RelativeLayout>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/fragment_ll_documents"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fragment_documents_documents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="3dp"
+                    android:clickable="false"
+                    android:scaleType="fitXY"
+                    android:text="文档"
+                    android:textColor="@color/black_panit"
+                    android:textSize="@dimen/text_small" />
+
+                <RelativeLayout
+                    android:id="@+id/fragment_documents_rl_documents"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="-3dp"
+                    android:background="@color/tool_bar"></RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fragment_ll_video"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fragment_documents_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="3dp"
+                    android:clickable="false"
+                    android:scaleType="fitXY"
+                    android:text="视频"
+                    android:textColor="@color/black_panit"
+                    android:textSize="@dimen/text_small" />
+
+                <RelativeLayout
+                    android:id="@+id/fragment_documents_rl_video"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="-3dp"
+                    android:background="@color/tool_bar"></RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fragment_ll_music"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fragment_documents_music"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="3dp"
+                    android:clickable="false"
+                    android:scaleType="fitXY"
+                    android:text="应用"
+                    android:textColor="@color/black_panit"
+                    android:textSize="@dimen/text_small" />
+
+                <RelativeLayout
+                    android:id="@+id/fragment_documents_rl_music"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="-3dp"
+                    android:background="@color/tool_bar"></RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/arrow"></RelativeLayout>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/material_document_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

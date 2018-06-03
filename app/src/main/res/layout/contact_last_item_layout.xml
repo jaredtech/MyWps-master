@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/margin_small"
+    android:paddingTop="@dimen/margin_small"
+
+    >
+
+    <com.example.ysl.mywps.ui.view.IconTextView
+        android:id="@+id/contact_at"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="&#xe62a;"
+        android:textColor="@color/text_blue"
+        android:textSize="@dimen/icon_normal" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="邀请同事加入...."
+        android:textColor="@color/text_blue"
+        android:layout_toRightOf="@+id/contact_rl_at"
+        android:textSize="@dimen/text_large" />
+
+</LinearLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/margin_small"
+    android:paddingTop="@dimen/margin_small"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="共5人"
+        android:textColor="@color/text_gray"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/contact_rl_at"
+        android:textSize="@dimen/text_small" />
+
+</RelativeLayout>
+</LinearLayout>

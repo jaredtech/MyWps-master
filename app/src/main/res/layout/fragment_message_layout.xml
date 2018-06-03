@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/top_search_back"
+    android:orientation="vertical"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:background="@color/tool_bar"
+        android:visibility="gone"
+        >
+        <com.example.ysl.mywps.ui.view.IconTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/message_title"
+            android:textSize="@dimen/icon_normal"
+            android:textColor="@color/white_back"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white_back"
+            android:textSize="@dimen/text_title"
+            android:text="消息 "
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/button_light_gray"
+      android:layout_marginLeft="@dimen/activity_horizontal_margin"
+      android:layout_marginRight="@dimen/activity_horizontal_margin"
+      android:layout_marginTop="@dimen/margin_small"
+      android:layout_marginBottom="@dimen/margin_small"
+      android:paddingBottom="@dimen/margin_small"
+      android:paddingTop="@dimen/margin_small"
+      >
+
+      <com.example.ysl.mywps.ui.view.IconTextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerInParent="true"
+          android:textSize="@dimen/text_normal"
+          android:textColor="@color/text_black"
+          android:text="&#xe639; 搜索"
+          />
+
+  </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/stay_back"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingBottom="@dimen/margin_small"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:gravity="center_vertical"
+        >
+        <com.example.ysl.mywps.ui.view.IconTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&#xe66f;"
+            android:textSize="20sp"
+            android:textColor="@color/text_stay"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:text="我的代办"
+            android:textSize="@dimen/text_normal"
+            android:textColor="@color/text_stay"/>
+
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_back"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    >
+    <ListView
+        android:id="@+id/message_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/arrow"
+        android:scrollbars="none"
+        android:dividerHeight="0.5dp"
+        >
+
+    </ListView>
+
+</LinearLayout>
+
+</LinearLayout>

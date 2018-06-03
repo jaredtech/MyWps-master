@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--消息界面-->
+    <color name="title">#4F77AA</color>
+    <color name="top_search_back">#F5F5F5</color>
+    <color name="stay_back">#F1F2F5</color>
+    <color name="white_back">#FFFFFF</color>
+    <color name="bottom_selected">#3879C9</color>
+    <color name="bottom_normal">#C7C8CB</color>
+    <color name="message_back">#EB5342</color>
+    <color name="text_gray">#8E8E93</color>
+    <color name="text_stay">#4D5A68</color>
+    <color name="text_black">#000000</color>
+
+    <!--通讯录界面-->
+    <color name="rect_orange"> #FF8133</color>
+    <color name="text_blue"> #6A95C6</color>
+    <!--工作台-->
+    <color name="rect_light_blue">#4794E8</color>
+    <color name="gray_blue">#47B3E1</color>
+    <color name="rect_red">#E62F2D</color>
+    <color name="container_back">#F5F5F5</color>
+
+    <!--我-->
+    <color name="rect_green">#8E8E93</color>
+   <!--箭头颜色-->
+    <color name="arrow">#C7C7CC</color>
+
+    <!--导航栏   #2B3136-->
+    <color name="tool_bar">#2B3136</color>
+    <!--按钮背景  #E62F2D-->
+    <color name="button_back">#E62F2D</color>
+    <!--主题背景  #ffffff-->
+    <color name="mani_back">#ffffff</color>
+    <color name="black_panit">#e0000000</color>
+</resources>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white_back"
+    android:layout_height="wrap_content">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="0.5dp"
+    android:background="@color/arrow"
+    ></RelativeLayout>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       >
+       <RelativeLayout
+           android:id="@+id/material_pop_bottom_download"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1">
+
+           <ImageView
+               android:id="@+id/material_pop_iv_download"
+               android:layout_width="30dp"
+               android:layout_height="30dp"
+               android:background="@mipmap/material_download"
+               android:layout_centerInParent="true"
+               android:layout_marginTop="@dimen/paddingVertical"
+
+               />
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/material_pop_iv_download"
+               android:layout_centerHorizontal="true"
+               android:layout_marginTop="@dimen/paddingVertical"
+               android:text="下载"
+               android:textColor="@color/text_black"
+               android:textSize="@dimen/text_normal" />
+
+       </RelativeLayout>
+
+
+       <RelativeLayout
+           android:id="@+id/material_pop_bottom_delete"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:layout_height="wrap_content">
+           <ImageView
+               android:id="@+id/material_pop_iv_delete"
+               android:layout_width="30dp"
+               android:layout_height="30dp"
+               android:background="@mipmap/msterial_delete"
+               android:layout_centerInParent="true"
+               android:layout_marginTop="@dimen/paddingVertical"
+               />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="删除"
+               android:textColor="@color/text_black"
+               android:layout_below="@+id/material_pop_iv_delete"
+               android:layout_marginTop="@dimen/paddingVertical"
+               android:layout_centerHorizontal="true"
+               android:textSize="@dimen/text_normal"
+               />
+
+       </RelativeLayout>
+
+       <RelativeLayout
+           android:id="@+id/material_pop_bottom_message"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:layout_height="wrap_content">
+           <ImageView
+               android:id="@+id/material_pop_iv_message"
+               android:layout_width="30dp"
+               android:layout_height="30dp"
+               android:background="@mipmap/material_message"
+               android:layout_centerInParent="true"
+               android:layout_marginTop="@dimen/paddingVertical"
+               />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="信息"
+               android:textColor="@color/text_black"
+               android:layout_below="@+id/material_pop_iv_message"
+               android:layout_marginTop="@dimen/paddingVertical"
+               android:layout_centerHorizontal="true"
+               android:textSize="@dimen/text_normal"
+               />
+
+       </RelativeLayout>
+
+   </LinearLayout>
+</LinearLayout>
