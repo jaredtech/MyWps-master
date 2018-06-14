@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:background="@color/white_back"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+              android:orientation="horizontal" android:layout_width="match_parent"
+              android:background="@color/white_back"
+              android:layout_height="match_parent"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
     >
-<RelativeLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:paddingTop="7dp"
-    >
-    <TextView
-        android:id="@+id/flow_tv_date"
-        android:layout_width="60dp"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="  8-24 \n 14:24"
-        android:textSize="@dimen/text_normal"
-        android:textColor="@color/text_gray"
-        />
-</RelativeLayout>
+        android:paddingTop="14dp"
+        >
+        <TextView
+            android:id="@+id/flow_tv_date"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="  8 - 24 \n 14 : 24"
+            android:textSize="@dimen/button_nomal"
+            android:lineSpacingExtra="5dp"
+            android:textColor="@color/text_gray"
+            />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -110,7 +111,7 @@
                     android:layout_marginLeft="@dimen/padding_small"
                     android:text="领导-0"
                     android:textColor="@color/text_gray"
-                    android:textSize="@dimen/text_large" />
+                    android:textSize="@dimen/text_small" />
             </LinearLayout>
 
 
@@ -129,18 +130,17 @@
                 android:paddingTop="@dimen/button_padding_top"
                 android:text="拟文"
                 android:textColor="@color/rect_red"
-                android:textSize="@dimen/button_text_small" />
+                android:textSize="12sp" />
         </RelativeLayout>
 
         <TextView
             android:id="@+id/flow_tv_opinion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/paddingVertical"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/padding_large"
             android:text="Lorem lpsum is simply dummy text of the printint and typesetting industry."
             android:textColor="@color/text_gray"
-            android:textSize="@dimen/text_normal" />
+            android:textSize="@dimen/text_small" />
     </LinearLayout>
 
 

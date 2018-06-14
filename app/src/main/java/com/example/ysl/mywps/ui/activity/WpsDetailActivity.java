@@ -1,14 +1,12 @@
 package com.example.ysl.mywps.ui.activity;
 
-import android.Manifest;
-import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -20,7 +18,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PagerSnapHelper;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -29,7 +30,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -41,8 +41,7 @@ import com.example.ysl.mywps.bean.DocumentListBean;
 import com.example.ysl.mywps.bean.WpsdetailFinish;
 import com.example.ysl.mywps.interfaces.HttpFileCallBack;
 import com.example.ysl.mywps.net.HttpUtl;
-import com.example.ysl.mywps.ui.adapter.WpsDetailAdapter;
-import com.example.ysl.mywps.ui.view.BaseDragZoomImageView;
+import com.example.ysl.mywps.ui.adapter.PreviewAdapter;
 import com.example.ysl.mywps.ui.view.MoviewImage;
 import com.example.ysl.mywps.ui.view.WritingPadView;
 import com.example.ysl.mywps.utils.CommonUtil;
@@ -109,8 +108,17 @@ public class WpsDetailActivity extends BaseActivity {
     MoviewImage ivIcon;
     @BindView(R.id.wpcdetal_pb_top)
     ProgressBar progressBar;
-    @BindView(R.id.wpcdetail_listview)
-    ListView listView;
+//    @BindView(R.id.wpcdetail_listview)
+//    ListView listView;
+
+//    @BindView(R.id.preview_viewpager)
+//    MyViewPager previewViewPager;
+
+    @BindView(R.id.previewList)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.textPager)
+    AppCompatTextView textPager;
+
     @BindView(R.id.wpcdetail_rl_loading)
     RelativeLayout rlLoading;
     @BindView(R.id.wpcdetail_rl_content)
@@ -123,7 +131,8 @@ public class WpsDetailActivity extends BaseActivity {
     private WpsBroadCast reciver = new WpsBroadCast();
     private int screenH = 0;
     private DocumentListBean documentInfo = null;
-    private WpsDetailAdapter adapter;
+    //    private WpsDetailAdapter adapter;
+    private PreviewAdapter adapter;
     private float x1, x2, y1, y2;
     private String uploadImagePath = "";
     private String downloadWpsPath = "";
@@ -215,7 +224,7 @@ public class WpsDetailActivity extends BaseActivity {
         loading.setVisibility(View.GONE);
 
 
-        if(wpsMode.equals(SysytemSetting.HANDLE_WPS) || wpsMode.equals(SysytemSetting.ISSUE_WPS) || wpsMode.equals(SysytemSetting.OUT_WPS)){
+        if (wpsMode.equals(SysytemSetting.HANDLE_WPS) || wpsMode.equals(SysytemSetting.ISSUE_WPS) || wpsMode.equals(SysytemSetting.OUT_WPS)) {
 
             llMessage.setVisibility(View.INVISIBLE);
             llSign.setVisibility(View.INVISIBLE);
@@ -236,9 +245,10 @@ public class WpsDetailActivity extends BaseActivity {
 
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void afterData() {
 
-        mAccount = SharedPreferenceUtils.loginValue(this,"name");
+        mAccount = SharedPreferenceUtils.loginValue(this, "name");
 
         Bundle bundle = getIntent().getExtras();
         documentInfo = bundle.getParcelable("documentben");
@@ -246,7 +256,7 @@ public class WpsDetailActivity extends BaseActivity {
 
 //        http:\/\/p2c152618.bkt.clouddn.com\/1_测试中文.docx_2.png?v=1517064503"
 
-        adapter = new WpsDetailAdapter(documentInfo.getDoc_imgs(), this);
+        adapter = new PreviewAdapter(documentInfo.getDoc_imgs(), this);
         if (documentInfo.getDoc_imgs() != null && documentInfo.getDoc_imgs().size() > 0) {
             String imagePath = documentInfo.getDoc_imgs().get(0).getImg();
             int nameStartIndex = imagePath.lastIndexOf("/") + 1;
@@ -256,15 +266,38 @@ public class WpsDetailActivity extends BaseActivity {
             Logger.i("   " + uploadImageName);
 
 
+            textPager.setText( "1/" + documentInfo.getDoc_imgs().size());
         }
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+                //判断是当前layoutManager是否为LinearLayoutManager
+                // 只有LinearLayoutManager才有查找第一个和最后一个可见view位置的方法
+                if (layoutManager instanceof LinearLayoutManager) {
+                    LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
+                    //获取第一个可见view的位置
+                    int firstItemPosition = linearManager.findFirstVisibleItemPosition();
+                    textPager.setText((firstItemPosition+1) + "/" + documentInfo.getDoc_imgs().size());
+                }
+            }
 
-
-        listView.setAdapter(adapter);
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+        new PagerSnapHelper().attachToRecyclerView(mRecyclerView);
 
         //只有处理人才会下载文件
-        if(mAccount.equals(documentInfo.getNow_nickname()) || mAccount.equals(documentInfo.getNow_username()))   downLoadWps(false);
+        if (mAccount.equals(documentInfo.getNow_nickname()) || mAccount.equals(documentInfo.getNow_username()))
+            downLoadWps(false);
 
-        listView.setOnTouchListener(new View.OnTouchListener() {
+        mRecyclerView.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -318,7 +351,7 @@ public class WpsDetailActivity extends BaseActivity {
 //            return;
 //        }
 
-        if(!checkFileExist())  return;
+        if (!checkFileExist()) return;
 
         rlLoading.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
@@ -340,7 +373,7 @@ public class WpsDetailActivity extends BaseActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                        if(!response.isSuccessful()){
+                        if (!response.isSuccessful()) {
                             emitter.onNext(response.message());
                             return;
                         }
@@ -383,12 +416,12 @@ public class WpsDetailActivity extends BaseActivity {
                 loading.setVisibility(View.GONE);
                 if (s.equals("Y")) {
 
-                    if(shouldOpen)     openWps(downloadWpsPath);
+                    if (shouldOpen) openWps(downloadWpsPath);
                     SharedPreferences.Editor editor = wpsPreference.edit();
                     editor.putString(documentInfo.getDoc_name(), documentInfo.getStatus());
                     editor.apply();
 //                    ToastUtils.showShort(getApplicationContext(), "文件下载成功");
-                }else if(s.equals("N")){
+                } else if (s.equals("N")) {
 
                 } else {
                     ToastUtils.showShort(getApplicationContext(), s);
@@ -412,7 +445,7 @@ public class WpsDetailActivity extends BaseActivity {
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
 
-        switch (wpsMode){
+        switch (wpsMode) {
 
 
             case SysytemSetting.HANDLE_WPS:
@@ -432,7 +465,6 @@ public class WpsDetailActivity extends BaseActivity {
                 else
                     bundle.putString(WpsModel.OPEN_MODE, WpsModel.OpenMode.READ_ONLY); // 只读模式
                 break;
-
 
 
         }
@@ -466,7 +498,7 @@ public class WpsDetailActivity extends BaseActivity {
         try {
             startActivity(intent);
         } catch (ActivityNotFoundException e) {
-            ToastUtils.showShort(WpsDetailActivity.this, "打开wps异常,请确认是否安装了WPS" );
+            ToastUtils.showShort(WpsDetailActivity.this, "打开wps异常,请确认是否安装了WPS");
             e.printStackTrace();
             return false;
         }
@@ -563,7 +595,7 @@ public class WpsDetailActivity extends BaseActivity {
                 call.enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
-                        if(!response.isSuccessful()){
+                        if (!response.isSuccessful()) {
                             emitter.onNext(response.message());
                             return;
                         }
@@ -685,8 +717,6 @@ public class WpsDetailActivity extends BaseActivity {
 
         }
     }
-
-
 
 
     private PopupWindow popupWindow;
@@ -864,6 +894,7 @@ public class WpsDetailActivity extends BaseActivity {
     }
 
 
+
     private class WpsBroadCast extends BroadcastReceiver {
 
         @Override
@@ -898,8 +929,8 @@ public class WpsDetailActivity extends BaseActivity {
 
     /**
      * 检查是否应该下载当前文件
-     * */
-    private boolean checkFileExist(){
+     */
+    private boolean checkFileExist() {
 
         String wpsPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath() + "/" + documentInfo.getDoc_name();
 
@@ -937,10 +968,10 @@ public class WpsDetailActivity extends BaseActivity {
 
             if (id == R.id.wpcdetail_iv_artical || id == R.id.wpcdetail_ll_artical) {
 
-                if(checkFileExist()){
-                    ToastUtils.showShort(WpsDetailActivity.this,"正在下载");
+                if (checkFileExist()) {
+                    ToastUtils.showShort(WpsDetailActivity.this, "正在下载");
                     downLoadWps(true);
-                }else {
+                } else {
                     openWps(downloadWpsPath);
                 }
 //                if(!mAccount.equals(documentInfo.getNow_nickname()) && !mAccount.equals(documentInfo.getNow_username())){
@@ -986,21 +1017,21 @@ public class WpsDetailActivity extends BaseActivity {
 
             } else if (id == R.id.wpcdetail_iv_sign || id == R.id.wpcdetail_ll_sign) {
 
-                if(!mAccount.equals(documentInfo.getNow_nickname()) && !mAccount.equals(documentInfo.getNow_username())){
-                    ToastUtils.showShort(WpsDetailActivity.this,"只有处理人才能签署文件");
+                if (!mAccount.equals(documentInfo.getNow_nickname()) && !mAccount.equals(documentInfo.getNow_username())) {
+                    ToastUtils.showShort(WpsDetailActivity.this, "只有处理人才能签署文件");
                     return;
                 }
 
-                if (!documentInfo.getStatus().equals("3")){
-                    ToastUtils.showShort(WpsDetailActivity.this,"只有签署阶段才能签署文件");
+                if (!documentInfo.getStatus().equals("3")) {
+                    ToastUtils.showShort(WpsDetailActivity.this, "只有签署阶段才能签署文件");
                     return;
                 }
 
                 haveSigned = true;
                 setSign();
             } else if (id == R.id.wpcdetail_iv_send || id == R.id.wpcdetail_ll_send) {
-                if(!mAccount.equals(documentInfo.getNow_nickname()) && !mAccount.equals(documentInfo.getNow_username())){
-                    ToastUtils.showShort(WpsDetailActivity.this,"只有处理人才能发送文件");
+                if (!mAccount.equals(documentInfo.getNow_nickname()) && !mAccount.equals(documentInfo.getNow_username())) {
+                    ToastUtils.showShort(WpsDetailActivity.this, "只有处理人才能发送文件");
                     return;
                 }
                 if (documentInfo.getStatus().equals("1") || documentInfo.getStatus().equals("5") || documentInfo.getStatus().equals("4")) {

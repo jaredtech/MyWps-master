@@ -1,37 +1,34 @@
 package com.example.ysl.mywps.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.example.ysl.mywps.R;
 import com.example.ysl.mywps.bean.DocumentImageBean;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
 import java.util.ArrayList;
 
-/**
- * Created by Administrator on 2018/1/20 0020.
- */
-
-public class WpsDetailAdapter extends BaseAdapter {
-
+public class PreviewAdapter extends RecyclerView.Adapter<PreviewAdapter.MyHolder> {
+    private static final String TAG = PreviewAdapter.class.getSimpleName();
     private Context context;
     private ArrayList<DocumentImageBean> list;
     private DisplayImageOptions options;
     private Bitmap imgBitmap;
     private Thread imageThread;
 
-    public WpsDetailAdapter(ArrayList<DocumentImageBean> list, Context context) {
+    public PreviewAdapter(ArrayList<DocumentImageBean> list, Context context) {
 
         this.list = list;
         this.context = context;
-
         options = new DisplayImageOptions.Builder()
 
                 .cacheInMemory(true)//设置下载的图片是否缓存在内存中
@@ -52,60 +49,41 @@ public class WpsDetailAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount() {
-        return list.size();
+    public MyHolder onCreateViewHolder(ViewGroup viewGroup, final int position) {
+        View imageLayout = LayoutInflater.from(context).inflate(R.layout.listview_item_wpcdetail_layout, viewGroup, false);
+        return new MyHolder(imageLayout);
     }
 
     @Override
-    public Object getItem(int position) {
-        return list.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(final int postion, View view, ViewGroup viewGroup) {
-
-        if (view == null) {
-            holder = new ViewHolder();
-            view = LayoutInflater.from(context).inflate(R.layout.listview_item_wpcdetail_layout, viewGroup, false);
-            holder.ivIcon = (ImageView) view.findViewById(R.id.wpcdetail_iv_item_content);
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
-        }
-        ImageLoader.getInstance().displayImage(list.get(postion).getImg(), holder.ivIcon, options);
-
-        if (postion == 0) {
+    public void onBindViewHolder(MyHolder myHolder, @SuppressLint("RecyclerView") final int position) {
+        ImageLoader.getInstance().displayImage(list.get(position).getImg(), myHolder.mView, options);
+        if (position == 0) {
 
             if (imageThread == null) {
 
                 imageThread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-
-                        imgBitmap = ImageLoader.getInstance().loadImageSync((list.get(postion).getImg()), options);
+                        imgBitmap = ImageLoader.getInstance().loadImageSync((list.get(position).getImg()), options);
                     }
                 });
                 imageThread.setDaemon(true);
                 imageThread.start();
             }
         }
-        return view;
-
     }
 
-    private class ViewHolder {
-
-        ImageView ivIcon;
+    @Override
+    public int getItemCount() {
+        return list.size();
     }
 
+    class MyHolder extends RecyclerView.ViewHolder{
+        ImageView mView;
 
-    private ViewHolder holder;
-
-
-
+        MyHolder(View itemView) {
+            super(itemView);
+            mView = itemView.findViewById(R.id.wpcdetail_iv_item_content);
+        }
+    }
 }

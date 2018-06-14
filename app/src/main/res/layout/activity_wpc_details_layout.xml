@@ -45,19 +45,29 @@
             android:layout_height="0dp"
             android:layout_weight="7">
 
-            <ListView
-                android:id="@+id/wpcdetail_listview"
+            <!--<ListView-->
+                <!--android:id="@+id/wpcdetail_listview"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@color/stay_back"-->
+                <!--android:divider="@android:color/transparent"-->
+                <!--android:dividerHeight="0dp"-->
+                <!--android:scrollbars="none"-->
+                <!--android:fadeScrollbars="false"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_alignParentStart="true">-->
+            <!--</ListView>-->
+
+            <!--<com.example.ysl.mywps.ui.view.MyViewPager-->
+                <!--android:id="@+id/preview_viewpager"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"/>-->
+            <com.example.ysl.mywps.ui.view.MyRecyclerView
+                android:id="@+id/previewList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/stay_back"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="0dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
-
-
-            </ListView>
+                android:background="@android:color/darker_gray"/>
 
             <com.example.ysl.mywps.ui.view.MoviewImage
                 android:id="@+id/wpcdetail_iv_icon"
@@ -101,8 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="正文"
-                    android:textColor="@color/white_back"
-                    android:textSize="@dimen/text_normal" />
+                    android:textColor="@color/white_back"/>
             </LinearLayout>
 
             <LinearLayout
@@ -123,8 +132,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="信息"
-                    android:textColor="@color/white_back"
-                    android:textSize="@dimen/text_normal" />
+                    android:textColor="@color/white_back" />
             </LinearLayout>
 
             <LinearLayout
@@ -145,8 +153,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="签署"
-                    android:textColor="@color/white_back"
-                    android:textSize="@dimen/text_normal" />
+                    android:textColor="@color/white_back" />
             </LinearLayout>
 
             <LinearLayout
@@ -167,8 +174,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="发送"
-                    android:textColor="@color/white_back"
-                    android:textSize="@dimen/text_normal" />
+                    android:textColor="@color/white_back" />
             </LinearLayout>
 
         </LinearLayout>
@@ -183,6 +189,16 @@
         app:indicatorColor="@color/title"
         app:indicatorName="LineSpinFadeLoaderIndicator" />
 
-
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/textPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_text_corner_gray"
+        android:layout_margin="15dp"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textColor="@android:color/white"
+        android:text="0/0"/>
 
 </RelativeLayout>

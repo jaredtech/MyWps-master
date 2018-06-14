@@ -8,10 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.ysl.mywps.R;
 import com.example.ysl.mywps.bean.FlowBean;
+import com.example.ysl.mywps.utils.CommonFun;
 import com.example.ysl.mywps.utils.CommonUtil;
 
 import java.util.ArrayList;
@@ -83,7 +86,7 @@ public class FlowAdapter extends BaseAdapter {
 
 
         holder.tvStage.setText(bean.getStatus());
-      if(CommonUtil.isEmpty(bean.getMonth()))  holder.tvDate.setText(bean.getCtime());
+        if(CommonUtil.isEmpty(bean.getMonth()))  holder.tvDate.setText(bean.getCtime());
         else holder.tvDate.setText("  "+bean.getMonth()+"\n  "+bean.getTime());
         holder.tvLeader.setText(bean.getUsername());
         holder.tvOpinion.setText(bean.getOpinion());
