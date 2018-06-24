@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -25,6 +26,7 @@ import butterknife.ButterKnife;
  * Created by ysl on 2017/7/26.
  */
 public abstract class BaseActivity extends AppCompatActivity {
+    private static final String TAG = BaseActivity.class.getSimpleName();
     private LinearLayout llRoot;
 
     private TextView tvBack;
@@ -85,7 +87,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         llRoot = (LinearLayout) findViewById(R.id.ll_basetitle_root);
         llBack = (LinearLayout) findViewById(R.id.title_ll_back);
         rlCotent = (RelativeLayout) findViewById(R.id.tittle_rl_content);
-
         llBack.setVisibility(View.INVISIBLE);
         tvTitle.setVisibility(View.INVISIBLE);
         tvRight.setVisibility(View.INVISIBLE);

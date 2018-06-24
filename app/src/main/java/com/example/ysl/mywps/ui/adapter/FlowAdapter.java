@@ -1,5 +1,6 @@
 package com.example.ysl.mywps.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -63,6 +64,7 @@ public class FlowAdapter extends BaseAdapter {
 
     private ViewHolder holder;
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View view, ViewGroup parent) {
 
@@ -82,14 +84,19 @@ public class FlowAdapter extends BaseAdapter {
 
         FlowBean bean = list.get(position);
 
-
-
-
         holder.tvStage.setText(bean.getStatus());
         if(CommonUtil.isEmpty(bean.getMonth()))  holder.tvDate.setText(bean.getCtime());
-        else holder.tvDate.setText("  "+bean.getMonth()+"\n  "+bean.getTime());
-        holder.tvLeader.setText(bean.getUsername());
-        holder.tvOpinion.setText(bean.getOpinion());
+        else holder.tvDate.setText("  "+bean.getMonth()+"  "+bean.getTime());
+        if (bean.getRealname() == null || bean.getRealname().equals("")){
+            holder.tvLeader.setText("测试");
+        }else {
+            holder.tvLeader.setText(bean.getRealname());
+        }
+        if (bean.getOpinion() == null || bean.getOpinion().equals("")) {
+            holder.tvOpinion.setVisibility(View.GONE);
+        } else {
+            holder.tvOpinion.setText(bean.getOpinion());
+        }
 //        if (position == list.size() - 1) {
 //           holder.ivCircle.setBackground(context.getResources().getDrawable(R.drawable.circle_red));
 //        }

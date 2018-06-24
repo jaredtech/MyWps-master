@@ -142,10 +142,10 @@ public class FlowActivity extends BaseActivity {
 
                                 try {
                                     String[] split1 = bean.getCtime().split(" ");
-                                    String month = split1[0].substring(5, split1[0].length());
-                                    String time = split1[1].substring(0, 5);
-                                    bean.setMonth(month);
-                                    bean.setTime(time);
+//                                    String month = split1[0].substring(5, split1[0].length());
+//                                    String time = split1[1].substring(0, 5);
+                                    bean.setMonth(split1[0]);
+                                    bean.setTime(split1[1]);
                                 }catch (NullPointerException e){
                                  e.printStackTrace();
                                 }

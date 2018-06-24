@@ -129,5 +129,7 @@ public interface NetApi {
     @POST("query")
     Call<String> roimToken(@Query("token") String token);
 
+    @POST("query")
+    Call<String> getDocumentMd5(@Query("token") String token,@Query("doc_id") String doc_id);
 
 }

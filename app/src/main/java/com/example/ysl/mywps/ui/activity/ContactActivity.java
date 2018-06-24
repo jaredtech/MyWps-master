@@ -3,6 +3,7 @@ package com.example.ysl.mywps.ui.activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
@@ -61,6 +62,7 @@ import retrofit2.Response;
 
 public class ContactActivity extends BaseActivity implements PasssString{
 
+    private static final String TAG = ContactActivity.class.getSimpleName();
     @BindView(R.id.contact_listview)
     ListView listView;
     @BindView(R.id.av_loading)
@@ -97,6 +99,7 @@ public class ContactActivity extends BaseActivity implements PasssString{
         ButterKnife.bind(this);
 
         docPath = getIntent().getStringExtra("path");
+        Log.d(TAG, "onCreate: " + docPath);
         documentInfo = getIntent().getExtras().getParcelable("documentInfo");
 
         if(documentInfo.getStatus().equals("4")) {
@@ -142,6 +145,10 @@ public class ContactActivity extends BaseActivity implements PasssString{
      */
     private void commitAudit(final String uid) {
 
+        if (docPath== null|| docPath.equals("")) {
+            ToastUtils.showShort(this, "文件不存在");
+            return;
+        }
         loading.setVisibility(View.VISIBLE);
         Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
             @Override
@@ -206,6 +213,10 @@ public class ContactActivity extends BaseActivity implements PasssString{
      * 提交文件领导签署
      */
     private void commitSign(final String uid) {
+        if (docPath== null|| docPath.equals("")) {
+            ToastUtils.showShort(this, "文件不存在");
+            return;
+        }
         loading.setVisibility(View.VISIBLE);
         Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
             @Override

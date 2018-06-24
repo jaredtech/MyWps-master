@@ -31,9 +31,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'src/main/libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'src/main/libs')
     compile 'com.android.support:support-v4:27.0.0'
-    compile project (':IMLib')
+    compile project(':IMLib')
+    compile files('src/main/libs/MiPush_SDK_Client_3_5_1.jar')
 }
 
 repositories { flatDir { dirs '../push/aars' }

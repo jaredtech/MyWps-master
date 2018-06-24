@@ -1,38 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_back"
+    android:orientation="vertical"
     >
+
     <LinearLayout
         android:id="@+id/document_ll_inside"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:orientation="vertical"
-        android:gravity="center"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="@dimen/paddingVertical"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             >
 
             <ImageView
-                android:layout_width="@dimen/icon_normal"
-                android:layout_height="@dimen/icon_normal"
-                android:background="@mipmap/zhutihuodong" />
+                android:layout_width="@dimen/icon_large_1"
+                android:layout_height="@dimen/icon_large_1"
+                android:background="@mipmap/ico_inner_file"/>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
                 >
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -41,20 +46,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_large"
-                        android:textColor="@color/text_black"
-                        android:text="内部公文"
                         android:layout_alignParentLeft="true"
-                        />
-
-
-                    <com.example.ysl.mywps.ui.view.IconTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="&#xe679;"
-                        android:textColor="@color/arrow"
-                        android:textSize="@dimen/icon_normal"
+                        android:text="内部公文"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/text_large"
                         />
 
                 </RelativeLayout>
@@ -62,40 +57,45 @@
             </LinearLayout>
 
         </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
-              android:layout_height="0.3dp"
-            android:background="@color/arrow"
+            android:layout_height="1dp"
             android:layout_marginTop="@dimen/paddingVertical"
+            android:background="@color/bottom_normal"
             />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/out_document"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:orientation="vertical"
-        android:gravity="center"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/paddingVertical"
+            android:gravity="center_vertical"
             >
+
             <ImageView
-                android:layout_width="@dimen/icon_normal"
-                android:layout_height="@dimen/icon_normal"
-                android:background="@mipmap/zhutihuodong" />
+                android:layout_width="@dimen/icon_large_1"
+                android:layout_height="@dimen/icon_large_1"
+                android:background="@mipmap/ico_outer_file"/>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
                 >
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -104,21 +104,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_large"
-                        android:textColor="@color/text_black"
-                        android:text="外部公文"
                         android:layout_alignParentLeft="true"
+                        android:text="外部公文"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/text_large"
                         />
 
-
-                    <com.example.ysl.mywps.ui.view.IconTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="&#xe679;"
-                        android:textColor="@color/arrow"
-                        android:textSize="@dimen/icon_normal"
-                        />
 
                 </RelativeLayout>
 
@@ -128,9 +119,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-               android:layout_height="0.3dp"
-            android:background="@color/arrow"
+            android:layout_height="1dp"
             android:layout_marginTop="@dimen/paddingVertical"
+            android:background="@color/bottom_normal"
             />
     </LinearLayout>
 
@@ -138,31 +129,33 @@
         android:id="@+id/query_document"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:orientation="vertical"
-        android:gravity="center"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/paddingVertical"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             >
 
             <ImageView
-                android:layout_width="@dimen/icon_normal"
-                android:layout_height="@dimen/icon_normal"
-                android:background="@mipmap/zhutihuodong" />
+                android:layout_width="@dimen/icon_large_1"
+                android:layout_height="@dimen/icon_large_1"
+                android:background="@mipmap/ico_handle_file"/>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
                 >
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -171,32 +164,24 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_large"
-                        android:textColor="@color/text_black"
-                        android:text="经办查询"
                         android:layout_alignParentLeft="true"
+                        android:text="经办查询"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/text_large"
                         />
 
-
-                    <com.example.ysl.mywps.ui.view.IconTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="&#xe679;"
-                        android:textColor="@color/arrow"
-                        android:textSize="@dimen/icon_normal"
-                        />
 
                 </RelativeLayout>
 
             </LinearLayout>
 
         </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0.3dp"
-            android:background="@color/arrow"
+            android:layout_height="1dp"
             android:layout_marginTop="@dimen/paddingVertical"
+            android:background="@color/bottom_normal"
             />
     </LinearLayout>
 
@@ -204,31 +189,32 @@
         android:id="@+id/issue_document"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:orientation="vertical"
-        android:gravity="center"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/paddingVertical"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             >
 
             <ImageView
-                android:layout_width="@dimen/icon_normal"
-                android:layout_height="@dimen/icon_normal"
-                android:background="@mipmap/zhutihuodong" />
-
+                android:layout_width="@dimen/icon_large_1"
+                android:layout_height="@dimen/icon_large_1"
+                android:background="@mipmap/ico_handout_file"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:orientation="vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
                 >
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -237,20 +223,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_large"
-                        android:textColor="@color/text_black"
-                        android:text="下发查询"
                         android:layout_alignParentLeft="true"
-                        />
-
-
-                    <com.example.ysl.mywps.ui.view.IconTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="&#xe679;"
-                        android:textColor="@color/arrow"
-                        android:textSize="@dimen/icon_normal"
+                        android:text="下发查询"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/text_large"
                         />
 
                 </RelativeLayout>
@@ -258,11 +234,12 @@
             </LinearLayout>
 
         </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0.3dp"
-            android:background="@color/arrow"
+            android:layout_height="1dp"
             android:layout_marginTop="@dimen/paddingVertical"
+            android:background="@color/bottom_normal"
             />
     </LinearLayout>
 </LinearLayout>

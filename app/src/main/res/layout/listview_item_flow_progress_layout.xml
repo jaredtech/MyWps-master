@@ -11,15 +11,6 @@
         android:layout_height="wrap_content"
         android:paddingTop="14dp"
         >
-        <TextView
-            android:id="@+id/flow_tv_date"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:text="  8 - 24 \n 14 : 24"
-            android:textSize="@dimen/button_nomal"
-            android:lineSpacingExtra="5dp"
-            android:textColor="@color/text_gray"
-            />
     </RelativeLayout>
 
     <RelativeLayout
@@ -30,7 +21,7 @@
         <RelativeLayout
             android:id="@+id/line1"
             android:layout_width="0.5dp"
-            android:layout_height="19dp"
+            android:layout_height="28dp"
             android:layout_centerHorizontal="true"
             android:background="@color/arrow"
             />
@@ -80,7 +71,7 @@
         android:layout_marginBottom="18dp"
         android:orientation="vertical"
         android:paddingBottom="@dimen/paddingVertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/paddingVertical"
         android:paddingTop="@dimen/paddingVertical">
 
         <RelativeLayout
@@ -99,19 +90,35 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:scaleType="fitXY"
                     android:src="@mipmap/avatar" />
-
-                <TextView
-                    android:id="@+id/flow_tv_leader"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding_small"
-                    android:text="领导-0"
-                    android:textColor="@color/text_gray"
-                    android:textSize="@dimen/text_small" />
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/flow_tv_leader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padding_small"
+                        android:text="领导-0"
+                        android:paddingBottom="1dp"
+                        android:textColor="@color/text_black"
+                        android:textSize="@dimen/text_normal" />
+                    <TextView
+                        android:id="@+id/flow_tv_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  8 - 24 14 : 24"
+                        android:textSize="@dimen/text_small"
+                        android:lineSpacingExtra="5dp"
+                        android:textColor="@color/text_gray"
+                        android:paddingTop="1dp"
+                        />
+
+                </LinearLayout>
             </LinearLayout>
 
 
@@ -130,7 +137,7 @@
                 android:paddingTop="@dimen/button_padding_top"
                 android:text="拟文"
                 android:textColor="@color/rect_red"
-                android:textSize="12sp" />
+                android:textSize="@dimen/button_nomal" />
         </RelativeLayout>
 
         <TextView

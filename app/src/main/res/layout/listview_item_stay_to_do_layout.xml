@@ -7,8 +7,8 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingBottom="@dimen/paddingVertical"
-    android:paddingLeft="@dimen/padding_left"
-    android:paddingRight="@dimen/padding_left"
+    android:paddingLeft="5dp"
+    android:paddingRight="@dimen/paddingVertical"
     android:paddingTop="@dimen/paddingVertical">
 
     <RelativeLayout
@@ -17,12 +17,12 @@
 
 
         <ImageView
-            android:layout_width="45dp"
-            android:layout_height="55dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:background="@mipmap/stay_word" />
+            android:background="@mipmap/ico_file" />
 
         <ImageView
             android:id="@+id/stay_iv_status"
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/activity_horizontal_margin">
+        android:paddingLeft="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -57,7 +57,10 @@
                 android:layout_toLeftOf="@+id/stay_tv_send"
                 android:text="号门成都环球"
                 android:textColor="@color/text_black"
-                android:textSize="@dimen/text_large" />
+                android:maxLines="2"
+                android:paddingRight="@dimen/margin_small"
+                android:ellipsize="end"
+                android:textSize="@dimen/text_normal" />
 
             <TextView
                 android:id="@+id/stay_tv_send"
@@ -65,13 +68,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/red_rect"
-                android:paddingBottom="@dimen/button_padding_top"
                 android:paddingLeft="@dimen/button_padding_left"
                 android:paddingRight="@dimen/button_padding_left"
-                android:paddingTop="@dimen/button_padding_top"
                 android:text="发文"
+                android:paddingBottom="@dimen/button_padding_top"
+                android:paddingTop="@dimen/button_padding_top"
                 android:textColor="@color/rect_red"
-                android:textSize="@dimen/button_text_small" />
+                android:textSize="@dimen/button_nomal" />
 
 
         </RelativeLayout>
@@ -79,7 +82,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/stay_tv_dates"
@@ -90,7 +93,7 @@
                 android:layout_alignParentTop="true"
                 android:text="2018-01-10 21:30"
                 android:textColor="@color/text_gray"
-                android:textSize="@dimen/text_normal" />
+                android:textSize="@dimen/text_small" />
 
             <TextView
                 android:id="@+id/stay_tv_handle"
@@ -104,9 +107,9 @@
 
                 android:marqueeRepeatLimit="marquee_forever"
                 android:maxWidth="110dp"
-                android:text="处理人: xxx"
+                android:text="xxx"
                 android:textColor="@color/text_gray"
-                android:textSize="@dimen/text_normal" />
+                android:textSize="@dimen/text_small" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

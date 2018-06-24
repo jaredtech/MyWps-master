@@ -16,6 +16,7 @@
     <dimen name="button_small">10sp</dimen>
     <dimen name="icon_normal">27sp</dimen>
     <dimen name="icon_large">30sp</dimen>
+    <dimen name="icon_large_1">32sp</dimen>
     <dimen name="padding_left">16dp</dimen>
     <dimen name="work_rect_margin">22dp</dimen>
     <dimen name="button_padding_top">1.5dp</dimen>

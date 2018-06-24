@@ -369,4 +369,34 @@ public class DocumentListBean implements Parcelable {
         dest.writeString(dept_name);
         dest.writeString(is_forward);
     }
+
+    @Override
+    public String toString() {
+        return "DocumentListBean{" +
+                "doc_imgs=" + doc_imgs +
+                ", id='" + id + '\'' +
+                ", uid='" + uid + '\'' +
+                ", title='" + title + '\'' +
+                ", dept='" + dept + '\'' +
+                ", des='" + des + '\'' +
+                ", doc_name='" + doc_name + '\'' +
+                ", doc_url='" + doc_url + '\'' +
+                ", status='" + status + '\'' +
+                ", ctime='" + ctime + '\'' +
+                ", proce_id='" + proce_id + '\'' +
+                ", now_uid='" + now_uid + '\'' +
+                ", from_uid='" + from_uid + '\'' +
+                ", n_time='" + n_time + '\'' +
+                ", opinion='" + opinion + '\'' +
+                ", is_writable=" + is_writable +
+                ", c_username='" + c_username + '\'' +
+                ", c_nickname='" + c_nickname + '\'' +
+                ", c_realname='" + c_realname + '\'' +
+                ", now_username='" + now_username + '\'' +
+                ", now_nickname='" + now_nickname + '\'' +
+                ", now_realname='" + now_realname + '\'' +
+                ", dept_name='" + dept_name + '\'' +
+                ", is_forward='" + is_forward + '\'' +
+                '}';
+    }
 }

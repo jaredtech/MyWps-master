@@ -3,6 +3,8 @@ package com.example.ysl.mywps.ui.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,6 +46,24 @@ public class PreviewAdapter extends RecyclerView.Adapter<PreviewAdapter.MyHolder
                 .build();//
     }
 
+    public void loadImage(final int position, final Handler handler) {
+        if (imageThread == null) {
+            imageThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d(TAG, "run: " + position);
+                    imgBitmap = ImageLoader.getInstance().loadImageSync((list.get(position).getImg()), options);
+                    Log.d(TAG, "loadImage: " + list.get(position).getImg());
+                    Message message = handler.obtainMessage();
+                    message.what = 0;
+                    handler.sendMessage(message);
+                }
+            });
+            imageThread.setDaemon(true);
+            imageThread.start();
+        }
+    }
+
     public Bitmap getImgBitmap() {
         return imgBitmap;
     }
@@ -57,20 +77,17 @@ public class PreviewAdapter extends RecyclerView.Adapter<PreviewAdapter.MyHolder
     @Override
     public void onBindViewHolder(MyHolder myHolder, @SuppressLint("RecyclerView") final int position) {
         ImageLoader.getInstance().displayImage(list.get(position).getImg(), myHolder.mView, options);
-        if (position == 0) {
-
-            if (imageThread == null) {
-
-                imageThread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        imgBitmap = ImageLoader.getInstance().loadImageSync((list.get(position).getImg()), options);
-                    }
-                });
-                imageThread.setDaemon(true);
-                imageThread.start();
-            }
-        }
+        Log.d(TAG, "onCreateViewHolder: " + list.get(position).getImg());
+//        if (imageThread == null) {
+//            imageThread = new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    imgBitmap = ImageLoader.getInstance().loadImageSync((list.get(position).getImg()), options);
+//                }
+//            });
+//            imageThread.setDaemon(true);
+//            imageThread.start();
+//        }
     }
 
     @Override

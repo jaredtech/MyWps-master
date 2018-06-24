@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -42,8 +43,10 @@ import com.example.ysl.mywps.bean.WpsdetailFinish;
 import com.example.ysl.mywps.interfaces.HttpFileCallBack;
 import com.example.ysl.mywps.net.HttpUtl;
 import com.example.ysl.mywps.ui.adapter.PreviewAdapter;
+import com.example.ysl.mywps.ui.view.DragViewGroup;
 import com.example.ysl.mywps.ui.view.MoviewImage;
 import com.example.ysl.mywps.ui.view.WritingPadView;
+import com.example.ysl.mywps.utils.CommonFun;
 import com.example.ysl.mywps.utils.CommonUtil;
 import com.example.ysl.mywps.utils.FileUtils;
 import com.example.ysl.mywps.utils.NoDoubleClickListener;
@@ -52,6 +55,7 @@ import com.example.ysl.mywps.utils.SysytemSetting;
 import com.example.ysl.mywps.utils.ToastUtils;
 import com.example.ysl.mywps.utils.WpsModel;
 import com.example.ysl.mywps.utils.WpsUtils;
+import com.handmark.pulltorefresh.library.internal.Utils;
 import com.lx.fit7.Fit7Utils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.orhanobut.logger.Logger;
@@ -75,6 +79,7 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
@@ -87,6 +92,11 @@ import retrofit2.Response;
  */
 
 public class WpsDetailActivity extends BaseActivity {
+
+    private static final String TAG = WpsDetailActivity.class.getSimpleName();
+    public static final int GET_OPTION = 0x0001;
+
+    private String opinion = "";
 
     @BindView(R.id.wpcdetail_iv_artical)
     ImageView ivArtical;
@@ -105,7 +115,9 @@ public class WpsDetailActivity extends BaseActivity {
     @BindView(R.id.wpcdetail_ll_send)
     LinearLayout llSend;
     @BindView(R.id.wpcdetail_iv_icon)
-    MoviewImage ivIcon;
+    ImageView ivIcon;
+    @BindView(R.id.rlDragContent)
+    DragViewGroup rlDragContent;
     @BindView(R.id.wpcdetal_pb_top)
     ProgressBar progressBar;
 //    @BindView(R.id.wpcdetail_listview)
@@ -133,7 +145,6 @@ public class WpsDetailActivity extends BaseActivity {
     private DocumentListBean documentInfo = null;
     //    private WpsDetailAdapter adapter;
     private PreviewAdapter adapter;
-    private float x1, x2, y1, y2;
     private String uploadImagePath = "";
     private String downloadWpsPath = "";
     private String token = "";
@@ -144,6 +155,7 @@ public class WpsDetailActivity extends BaseActivity {
     float ivHeight;
     private String wpsMode = "";
     private String mAccount = "";
+
 
     private SharedPreferences wpsPreference;
 //    提交审核后是2 文档返回给拟稿人后是5  提交文件领导签署后是3 签署完成后 成功是4 失败是五，继续提交审核
@@ -173,6 +185,9 @@ public class WpsDetailActivity extends BaseActivity {
             }
         }
     };
+    private int firstItemPosition = 0;
+    private MotionEvent mSignOldPosition;
+    private String remoteMd5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,9 +195,8 @@ public class WpsDetailActivity extends BaseActivity {
 
         setContentView(R.layout.activity_wpc_details_layout);
         ButterKnife.bind(this);
-
+        int[] screenWH = CommonUtil.getScreenWH(this);
         wpsPreference = getSharedPreferences("wpsStatus", Context.MODE_PRIVATE);
-
 
         wpsMode = getIntent().getStringExtra(SysytemSetting.WPS_MODE);
 
@@ -197,7 +211,7 @@ public class WpsDetailActivity extends BaseActivity {
 
         rlLoading.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
-        ivIcon.setVisibility(View.GONE);
+        rlDragContent.setVisibility(View.GONE);
 
         this.registerReceiver(reciver, new IntentFilter("com.example.ysl.mywps.sign"));
         token = SharedPreferenceUtils.loginValue(this, "token");
@@ -245,6 +259,7 @@ public class WpsDetailActivity extends BaseActivity {
 
     }
 
+
     @SuppressLint("ClickableViewAccessibility")
     private void afterData() {
 
@@ -255,7 +270,7 @@ public class WpsDetailActivity extends BaseActivity {
         setTitleText(documentInfo.getDoc_name());
 
 //        http:\/\/p2c152618.bkt.clouddn.com\/1_测试中文.docx_2.png?v=1517064503"
-
+        Log.d(TAG, "afterData: " + documentInfo.getOpinion());
         adapter = new PreviewAdapter(documentInfo.getDoc_imgs(), this);
         if (documentInfo.getDoc_imgs() != null && documentInfo.getDoc_imgs().size() > 0) {
             String imagePath = documentInfo.getDoc_imgs().get(0).getImg();
@@ -264,10 +279,11 @@ public class WpsDetailActivity extends BaseActivity {
 
             uploadImageName = imagePath.substring(nameStartIndex, nameEndIndex);
             Logger.i("   " + uploadImageName);
-
-
-            textPager.setText( "1/" + documentInfo.getDoc_imgs().size());
+            textPager.setText("1/" + documentInfo.getDoc_imgs().size());
         }
+        int height = rlContent.getHeight();
+        int width = rlContent.getWidth();
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -281,8 +297,11 @@ public class WpsDetailActivity extends BaseActivity {
                 if (layoutManager instanceof LinearLayoutManager) {
                     LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
                     //获取第一个可见view的位置
-                    int firstItemPosition = linearManager.findFirstVisibleItemPosition();
-                    textPager.setText((firstItemPosition+1) + "/" + documentInfo.getDoc_imgs().size());
+                    firstItemPosition = linearManager.findFirstVisibleItemPosition();
+                    textPager.setText((firstItemPosition + 1) + "/" + documentInfo.getDoc_imgs().size());
+//                    if (ivIcon.getVisibility() == View.VISIBLE && mSignOldPosition != null) {
+//                        ivIcon.autoMouse(mSignOldPosition);
+//                    }
                 }
             }
 
@@ -294,28 +313,39 @@ public class WpsDetailActivity extends BaseActivity {
         new PagerSnapHelper().attachToRecyclerView(mRecyclerView);
 
         //只有处理人才会下载文件
-        if (mAccount.equals(documentInfo.getNow_nickname()) || mAccount.equals(documentInfo.getNow_username()))
-            downLoadWps(false);
+        if (mAccount.equals(documentInfo.getNow_nickname()) || mAccount.equals(documentInfo.getNow_username())) {
+//            downLoadWps(false);
+            if (checkFileExist()) {
+                checkMd5AndDownload(false);
+            } else {
+                downLoadWps(false);
+            }
+        }
 
         mRecyclerView.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-
+                //TODO 点击消失
 
                 float clickx = event.getX();
 
-                x1 = ivIcon.getX() - 90;
-                x2 = ivIcon.getX() + ivIcon.getWidth() + 90;
+                float x1, x2, y1, y2;
+                x1 = rlDragContent.getX();
+                x2 = rlDragContent.getX() + rlDragContent.getWidth();
                 y1 = event.getY();
-                y2 = ivIcon.getY();
-
+                y2 = rlDragContent.getY();
                 float sumx = Math.abs(x2 - x1);
                 float sumy = Math.abs(y2 - y1);
                 if (clickx > x1 && clickx < x2 && sumy < 350 && y1 > y2) {
-                    ivIcon.autoMouse(event);
+                    rlDragContent.autoMouse(event);
+//                    ivIcon.setBackgroundResource(R.drawable.dash1dp);
+                    mSignOldPosition = event;
+//                    Log.d(TAG, "onTouch: left = " + ivIcon.getX() + " | top = " + ivIcon.getY());
                     return true;
                 }
+//                if ()
+//                ivIcon.setBackgroundColor(Color.TRANSPARENT);
                 return false;
             }
         });
@@ -351,7 +381,11 @@ public class WpsDetailActivity extends BaseActivity {
 //            return;
 //        }
 
-        if (!checkFileExist()) return;
+        if (checkFileExist()) {
+            String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath() + "/" + documentInfo.getDoc_name();
+            File file = new File(path);
+            file.delete();
+        }
 
         rlLoading.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.VISIBLE);
@@ -360,7 +394,6 @@ public class WpsDetailActivity extends BaseActivity {
         Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(final ObservableEmitter<String> emitter) {
-
                 String url = documentInfo.getDoc_url();
                 int headIndex = url.indexOf("com/") + 3;
                 String headUrl = url.substring(0, headIndex + 1);
@@ -420,9 +453,7 @@ public class WpsDetailActivity extends BaseActivity {
                     SharedPreferences.Editor editor = wpsPreference.edit();
                     editor.putString(documentInfo.getDoc_name(), documentInfo.getStatus());
                     editor.apply();
-//                    ToastUtils.showShort(getApplicationContext(), "文件下载成功");
-                } else if (s.equals("N")) {
-
+                    ToastUtils.showShort(getApplicationContext(), "文档下载成功");
                 } else {
                     ToastUtils.showShort(getApplicationContext(), s);
                 }
@@ -516,7 +547,6 @@ public class WpsDetailActivity extends BaseActivity {
         if (adapter == null) {
             return;
         }
-
         File newFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath());
         if (!newFile.exists()) {
             newFile.mkdirs();
@@ -525,9 +555,26 @@ public class WpsDetailActivity extends BaseActivity {
         ivIcon.setDrawingCacheEnabled(true);
 
         final Bitmap backBitmap = adapter.getImgBitmap();
-        final float left = Math.abs(ivIcon.getX() - 80);
-        final float top = Math.abs(ivIcon.getY() - 140);
+//        int blackEreaHeigh = 0;
+//        int blackEreaWidth = 0;
+//        float contentRatio = (float)rlContent.getWidth() / rlContent.getHeight();
+//        float bitmapRatio = (float)backBitmap.getWidth() / backBitmap.getHeight();
+//        if (contentRatio - bitmapRatio < 0) {
+//            int i = rlContent.getWidth() / backBitmap.getWidth() * backBitmap.getHeight();
+//            blackEreaHeigh = (rlContent.getHeight() - i) / 2;
+//            Log.d(TAG, "saveImage: blackEreaHeigh = " + blackEreaHeigh);
+//        }else if (contentRatio - bitmapRatio > 0){
+//            int i = rlContent.getHeight() / backBitmap.getHeight() * backBitmap.getWidth();
+//            blackEreaWidth = (rlContent.getWidth() - i) / 2;
+//            Log.d(TAG, "saveImage: blackEreaWidth = " + blackEreaWidth);
+//        }
 
+//        Log.d(TAG, "saveImage: " + ivIcon.getX() + " - " + rlDragContent.getX() + " - " + blackEreaWidth);
+//        Log.d(TAG, "saveImage: " + ivIcon.getY() + " - " + rlDragContent.getY() + " - " + blackEreaHeigh);
+        final float left = getSignPositionX(ivIcon.getX() + rlDragContent.getX(), backBitmap);
+        final float top = getSignPositionY(ivIcon.getY() + rlDragContent.getY(), backBitmap);
+//        int i = CommonFun.px2dip(this, 87);
+//        int j = CommonFun.px2dip(this, 105);
         if (backBitmap == null || CommonUtil.isEmpty(uploadImageName)) {
             ToastUtils.showShort(WpsDetailActivity.this, "列表中没有图片不能上传图片");
             return;
@@ -535,22 +582,30 @@ public class WpsDetailActivity extends BaseActivity {
         Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(ObservableEmitter<String> e) {
-
                 try {
-                    Bitmap forBitmap = null;
                     FileInputStream fis = new FileInputStream(localImagePath);
-                    forBitmap = BitmapFactory.decodeStream(fis);
+                    Bitmap localBitmap = BitmapFactory.decodeStream(fis);
+                    int height = localBitmap.getHeight();
+                    int width = localBitmap.getWidth();
+                    float scaleW = CommonFun.dip2pxFloat(WpsDetailActivity.this,78.0f) / width;
+                    float scaleH = CommonFun.dip2pxFloat(WpsDetailActivity.this,58.0f) / height;
                     Matrix matrix = new Matrix();
-                    matrix.setScale(0.3f, 0.3f);
+//                    matrix.setScale(0.3f, 0.3f);
+//                    matrix.postScale(scaleW - 0.15f, scaleH - 0.04f); // w h
+                    matrix.setScale(scaleW, scaleH); // w h
+                    Log.d("压缩前  ", scaleW + "  " + scaleH);
+                    Bitmap forgroundBitmao = Bitmap.createBitmap(localBitmap, 0, 0, width,
+                            height, matrix, true);
+                    Log.d("压缩后  ", forgroundBitmao.getWidth() + "  " + forgroundBitmao.getHeight());
+                    localBitmap.recycle();
 
-                    Logger.i("压缩前  " + forBitmap.getWidth() + "  " + forBitmap.getHeight());
-                    forBitmap = Bitmap.createBitmap(forBitmap, 0, 0, forBitmap.getWidth(),
-                            forBitmap.getHeight(), matrix, true);
-                    Logger.i("压缩后  " + forBitmap.getWidth() + "  " + forBitmap.getHeight());
+//                    Bitmap myBitmap = toConformBitmap(backBitmap, forgroundBitmao, left + 40, top + 15);
+                    Bitmap myBitmap = toConformBitmap(backBitmap, forgroundBitmao, left, top);
 
-
-                    Bitmap myBitmap = toConformBitmap(backBitmap, forBitmap, left, top);
+                    getUploadFileName(documentInfo.getDoc_imgs().get(firstItemPosition).getImg());
                     String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath() + "/" + uploadImageName;
+                    Log.d(TAG, "subscribe: " + path);
+                    Log.d(TAG, "subscribe: " + uploadImageName);
                     saveDownload(path, myBitmap);
                     uploadImagePath = path;
 
@@ -567,7 +622,7 @@ public class WpsDetailActivity extends BaseActivity {
             public void accept(String s) throws Exception {
                 loading.setVisibility(View.GONE);
                 if (s.equals("Y")) {
-                    signCompleted();
+                    signCompleted("签署成功", "2");
                 }
                 ToastUtils.showShort(WpsDetailActivity.this, s);
             }
@@ -581,7 +636,7 @@ public class WpsDetailActivity extends BaseActivity {
     /**
      * 签署成功完成返回给拟稿人
      */
-    private void signCompleted() {
+    private void signCompleted(final String opinion, final String signed) {
 
 
         loading.setVisibility(View.VISIBLE);
@@ -589,8 +644,7 @@ public class WpsDetailActivity extends BaseActivity {
             @Override
             public void subscribe(@io.reactivex.annotations.NonNull final ObservableEmitter<String> emitter) throws Exception {
 //
-                Call<String> call = HttpUtl.signedCommit("User/Oa/back_signed_doc/", documentInfo.getProce_id(), documentInfo.getId(), "签署成功", "2", uploadImageName, uploadImagePath, token);
-
+                Call<String> call = HttpUtl.signedCommit("User/Oa/back_signed_doc/", documentInfo.getProce_id(), documentInfo.getId(), opinion, signed, uploadImageName, uploadImagePath, token);
 
                 call.enqueue(new Callback<String>() {
                     @Override
@@ -667,27 +721,110 @@ public class WpsDetailActivity extends BaseActivity {
     }
 
     /**
+     * 签署失败返回给拟稿人
+     */
+    private void signUnCompleted(final String opinion, final String signed) {
+
+//        if (CommonUtil.isEmpty(uploadIamgePath)) {
+//            ToastUtils.showShort(this, "图片保存失败，请重新点击信息按钮");
+//            return;
+//        }
+        loading.setVisibility(View.VISIBLE);
+        Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(@NonNull final ObservableEmitter<String> emitter) throws Exception {
+
+                Call<String> call = HttpUtl.signedCommit("User/Oa/back_signed_doc/", documentInfo.getProce_id(), documentInfo.getId(), opinion, signed, documentInfo.getDoc_name(), downloadWpsPath, token);
+                Logger.i("commit  " + opinion);
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        if (!response.isSuccessful()) {
+                            emitter.onNext(response.message());
+                            return;
+                        }
+
+                        try {
+                            String msg = response.body();
+                            Logger.i("commit  " + msg);
+                            if (CommonUtil.isEmpty(msg)) {
+                                return;
+                            }
+                            Logger.i("commitSign  " + msg);
+                            JSONObject jsonObject = new JSONObject(msg);
+                            int code = jsonObject.getInt("code");
+                            String message = jsonObject.getString("msg");
+
+                            emitter.onNext(message);
+                            if (code == 0) {
+                                emitter.onNext("Y");
+                            } else {
+                                emitter.onNext("N");
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            emitter.onNext(e.getMessage());
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
+                        emitter.onNext(t.getMessage());
+
+
+                    }
+                });
+            }
+        });
+
+
+        Consumer<String> observer = new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                loading.setVisibility(View.GONE);
+                if (s.equals("Y") || s.equals("N")) {
+
+
+                    if (s.equals("Y")) {
+                        EventBus.getDefault().post(new WpsdetailFinish("commit 提交成功"));
+                        finish();
+                    }
+                } else {
+                    ToastUtils.showLong(getApplicationContext(), s);
+                }
+
+            }
+        };
+
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+    }
+
+    /**
      * 合成bitmap
      */
     private Bitmap toConformBitmap(Bitmap background, Bitmap foreground, float left, float top) {
         if (background == null) {
             return null;
         }
-
         int bgWidth = background.getWidth();
         int bgHeight = background.getHeight();
         //int fgWidth = foreground.getWidth();
         //int fgHeight = foreground.getHeight();
         //create the new blank bitmap 创建一个新的和SRC长度宽度一样的位图
+//        Log.d(TAG, "toConformBitmap: w = " + bgWidth + " h = " + bgHeight);
         Bitmap newbmp = Bitmap.createBitmap(bgWidth, bgHeight, Bitmap.Config.ARGB_8888);
         Canvas cv = new Canvas(newbmp);
-        //draw bg into
         cv.drawBitmap(background, 0, 0, null);//在 0，0坐标开始画入bg
-        //draw fg into
         cv.drawBitmap(foreground, left, top, null);//在 0，0坐标开始画入fg ，可以从任意位置画入
-        //save all clip
         cv.save(Canvas.ALL_SAVE_FLAG);//保存
-        //store
         cv.restore();//存储
         return newbmp;
     }
@@ -697,6 +834,7 @@ public class WpsDetailActivity extends BaseActivity {
      * 保存图片
      */
     public void saveDownload(String path, Bitmap myBitmap) {
+
 
         Bitmap bitmap = myBitmap;
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -800,7 +938,7 @@ public class WpsDetailActivity extends BaseActivity {
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-                                Log.d("HeadPortrait", "alpha:" + alpha);
+//                                Log.d("HeadPortrait", "alpha:" + alpha);
                                 Message msg = mHandler.obtainMessage();
                                 msg.what = 1;
                                 alpha += 0.01f;
@@ -819,13 +957,13 @@ public class WpsDetailActivity extends BaseActivity {
                 @Override
                 public void onClick(View v) {
                     popupWindow.dismiss();
-                    ivIcon.setVisibility(View.GONE);
+                    rlDragContent.setVisibility(View.GONE);
                 }
             });
             tvClear.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ivIcon.setVisibility(View.GONE);
+                    rlDragContent.setVisibility(View.GONE);
                     writingPadView.clear();
                 }
             });
@@ -855,7 +993,7 @@ public class WpsDetailActivity extends BaseActivity {
                             WpsDetailActivity.this.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    ivIcon.setVisibility(View.VISIBLE);
+                                    rlDragContent.setVisibility(View.VISIBLE);
 
                                     ImageLoader.getInstance().displayImage("file://" + mypath, ivIcon);
                                     popupWindow.dismiss();
@@ -881,6 +1019,7 @@ public class WpsDetailActivity extends BaseActivity {
 
     }
 
+
     /**
      * 设置添加屏幕的背景透明度
      *
@@ -892,7 +1031,6 @@ public class WpsDetailActivity extends BaseActivity {
         getWindow().setAttributes(lp);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
     }
-
 
 
     private class WpsBroadCast extends BroadcastReceiver {
@@ -936,29 +1074,91 @@ public class WpsDetailActivity extends BaseActivity {
 
         File file = new File(wpsPath);
 
-        boolean shouldUpdate = false;
-
-
+        //            String existsStatus = wpsPreference.getString(documentInfo.getDoc_name(), "");
+//            if (CommonUtil.isNotEmpty(existsStatus)) {
+//                if (documentInfo.getStatus().equals(existsStatus)) {
+//                    downloadWpsPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath() + "/" + documentInfo.getDoc_name();
+//                    shouldUpdate = false;
+//                } else {
+//                    shouldUpdate = true;
+//                }
+//            } else {
+//                shouldUpdate = true;
+//            }
         if (file.exists()) {
-
-            String existsStatus = wpsPreference.getString(documentInfo.getDoc_name(), "");
-            if (CommonUtil.isNotEmpty(existsStatus)) {
-                if (documentInfo.getStatus().equals(existsStatus)) {
-                    downloadWpsPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath() + "/" + documentInfo.getDoc_name();
-                    shouldUpdate = false;
-                } else {
-                    shouldUpdate = true;
-                }
-            } else {
-                shouldUpdate = true;
-            }
-        } else {
-            shouldUpdate = true;
+            downloadWpsPath = wpsPath;
         }
-
-        return shouldUpdate;
+        return file.exists();
     }
 
+    private void checkMd5AndDownload(final boolean needOpen) {
+        final String wpsPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath() + "/" + documentInfo.getDoc_name();
+        File file = new File(wpsPath);
+        final String md5Value = CommonFun.getMD5Three(file);
+        Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(final ObservableEmitter<String> emitter) throws Exception {
+                Call<String> call = HttpUtl.getDocumentMd5("User/Oa/get_doc_md5/", token, documentInfo.getId());
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+
+                        if (!response.isSuccessful()) {
+                            emitter.onNext(response.message());
+                            return;
+                        }
+                        String msg = response.body();
+                        Logger.i("commit  " + msg + "   " + md5Value);
+                        try {
+                            JSONObject jsonObject = new JSONObject(msg);
+
+                            int code = jsonObject.getInt("code");
+                            String message = jsonObject.getString("msg");
+                            JSONObject data = jsonObject.getJSONObject("data");
+                            remoteMd5 = data.getString("md5");
+                            if (code == 0) {
+                                if (remoteMd5.equals(md5Value)) {
+                                    emitter.onNext("N");
+                                }else {
+                                    emitter.onNext("Y");
+                                }
+                            } else {
+                                emitter.onNext(message);
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            emitter.onNext(e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
+                        emitter.onNext(t.getMessage());
+                    }
+                });
+            }
+        });
+        Consumer<String> consumer = new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                if (s.equals("Y")) {
+                    downLoadWps(needOpen);
+                }else if (s.equals("N")){
+                    if (needOpen) {
+                        openWps(wpsPath);
+                    }
+                }else {
+                    ToastUtils.showShort(WpsDetailActivity.this, s);
+                }
+            }
+        };
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(consumer);
+    }
 
     private class MyclickListener extends NoDoubleClickListener {
         @Override
@@ -969,10 +1169,11 @@ public class WpsDetailActivity extends BaseActivity {
             if (id == R.id.wpcdetail_iv_artical || id == R.id.wpcdetail_ll_artical) {
 
                 if (checkFileExist()) {
-                    ToastUtils.showShort(WpsDetailActivity.this, "正在下载");
-                    downLoadWps(true);
+//                    ToastUtils.showShort(WpsDetailActivity.this, "正在下载");
+                    checkMd5AndDownload(true);
+//                    downLoadWps(true);
                 } else {
-                    openWps(downloadWpsPath);
+                    downLoadWps(true);
                 }
 //                if(!mAccount.equals(documentInfo.getNow_nickname()) && !mAccount.equals(documentInfo.getNow_username())){
 //                    if(checkFileExist()){
@@ -1002,19 +1203,13 @@ public class WpsDetailActivity extends BaseActivity {
 //                    ToastUtils.showShort(WpsDetailActivity.this, "文档当前在拟稿状态");
 //                    return;
 //                }
-
-
-                if (documentInfo.getStatus().equals("3") || documentInfo.getStatus().equals("5") || documentInfo.getStatus().equals("2") || documentInfo.getStatus().equals("6")) {
-
                     Intent intent = new Intent(WpsDetailActivity.this, CommitActivity.class);
                     intent.putExtra("wpspath", downloadWpsPath);
+                    intent.putExtra("opinion", opinion);
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("documentInfo", documentInfo);
                     intent.putExtras(bundle);
-                    startActivity(intent);
-
-                } else ToastUtils.showShort(WpsDetailActivity.this, "该文档目前不在审核或签署流程");
-
+                    startActivityForResult(intent, GET_OPTION);
             } else if (id == R.id.wpcdetail_iv_sign || id == R.id.wpcdetail_ll_sign) {
 
                 if (!mAccount.equals(documentInfo.getNow_nickname()) && !mAccount.equals(documentInfo.getNow_username())) {
@@ -1035,28 +1230,224 @@ public class WpsDetailActivity extends BaseActivity {
                     return;
                 }
                 if (documentInfo.getStatus().equals("1") || documentInfo.getStatus().equals("5") || documentInfo.getStatus().equals("4")) {
-
-
                     Intent intent = new Intent(WpsDetailActivity.this, ContactActivity.class);
                     intent.putExtra("path", downloadWpsPath);
+                    Log.d(TAG, "click: " + downloadWpsPath);
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("documentInfo", documentInfo);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                } else if (documentInfo.getStatus().equals("3")) {
-                    if (!haveSigned || CommonUtil.isEmpty(localImagePath)) {
-                        ToastUtils.showShort(WpsDetailActivity.this, "请先签名图片");
+                } else if (documentInfo.getStatus().equals("2")) {
+                    if (opinion == null || opinion.equals("")) {
+                        ToastUtils.showShort(WpsDetailActivity.this, "请填写意见");
                         return;
                     }
-
-                    saveImage();
-
+                    uploadFile(opinion);
+                } else if (documentInfo.getStatus().equals("3")) {
+                    if (!haveSigned || CommonUtil.isEmpty(localImagePath)) {
+                        if (opinion.equals("")) {
+                            ToastUtils.showShort(WpsDetailActivity.this, "请填写意见或者签署文件");
+                        } else {
+                            signUnCompleted(opinion, "1");
+                        }
+                    } else {
+                        if (adapter != null) {
+                            adapter.loadImage(firstItemPosition, loadImageHandler);
+                        } else {
+                            ToastUtils.showShort(WpsDetailActivity.this, "图片没有加载或者为空");
+                        }
+                    }
+//                    saveImage();
+                } else if (documentInfo.getStatus().equals("6")) {
+                    feedBack(opinion);
                 } else {
                     ToastUtils.showShort(WpsDetailActivity.this, "该文档所在流程不能进入通讯录");
                 }
 
             }
         }
+    }
+
+    @SuppressLint("HandlerLeak")
+    Handler loadImageHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == 0) {
+                saveImage();
+            }
+        }
+    };
+
+    public void getUploadFileName(String imagePath) {
+        int nameStartIndex = imagePath.lastIndexOf("/") + 1;
+        int nameEndIndex = imagePath.lastIndexOf("png") + 3;
+
+        uploadImageName = imagePath.substring(nameStartIndex, nameEndIndex);
+    }
+
+    public float getSignPositionX(float left, Bitmap bitmap) {
+        return left / rlContent.getWidth() * bitmap.getWidth();
+    }
+
+    public float getSignPositionY(float top, Bitmap bitmap) {
+        return top / rlContent.getHeight() * bitmap.getHeight();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(TAG, "onActivityResult: requestCode = " + requestCode + "  resultCode = " + resultCode);
+        if (requestCode == GET_OPTION) {
+            if (resultCode == GET_OPTION && data != null) {
+                this.opinion = data.getStringExtra("opinion");
+                Log.d(TAG, "onActivityResult: " + opinion);
+            }
+        }
+    }
+
+    /**
+     * 签署审核意见
+     */
+    private void uploadFile(final String opinion) {
+
+        loading.setVisibility(View.VISIBLE);
+        final Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(final ObservableEmitter<String> emitter) throws Exception {
+                Call<String> call = HttpUtl.uploadWps("User/Oa/back_doc/", documentInfo.getId(), documentInfo.getProce_id(), token, opinion, documentInfo.getDoc_name(), downloadWpsPath);
+                Logger.i("commit  " + opinion);
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+
+                        if (!response.isSuccessful()) {
+                            emitter.onNext(response.message());
+                            return;
+                        }
+                        String msg = response.body();
+                        Logger.i("commit  " + msg);
+                        try {
+                            JSONObject jsonObject = new JSONObject(msg);
+
+                            int code = jsonObject.getInt("code");
+                            String message = jsonObject.getString("msg");
+
+                            emitter.onNext(message);
+                            if (code == 0) {
+                                emitter.onNext("Y");
+                            } else {
+                                emitter.onNext("N");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            emitter.onNext(e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
+                        emitter.onNext(t.getMessage());
+                    }
+                });
+            }
+        });
+        Consumer<String> consumer = new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                loading.setVisibility(View.GONE);
+                if (s.equals("Y") || s.equals("N")) {
+                    if (s.equals("Y")) {
+                        EventBus.getDefault().post(new WpsdetailFinish("commit 提交成功"));
+                        finish();
+                    }
+                } else {
+                    ToastUtils.showShort(WpsDetailActivity.this, s);
+                }
+
+            }
+        };
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(consumer);
+
+
+    }
+
+    /**
+     * 反馈意见
+     */
+    private void feedBack(final String opinion) {
+
+        loading.setVisibility(View.VISIBLE);
+        final Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(final ObservableEmitter<String> emitter) throws Exception {
+
+                Call<String> call = HttpUtl.feedBack("User/Oa/feedback/", documentInfo.getId(), opinion, token);
+
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+
+                        if (!response.isSuccessful()) {
+                            emitter.onNext(response.message());
+                            return;
+                        }
+                        String msg = response.body();
+                        Logger.i("commit  " + msg);
+                        try {
+                            if (msg == null) {
+                                emitter.onNext("N");
+                                return;
+                            }
+                            JSONObject jsonObject = new JSONObject(msg);
+
+                            int code = jsonObject.getInt("code");
+                            String message = jsonObject.getString("msg");
+
+                            emitter.onNext(message);
+                            if (code == 0) {
+                                emitter.onNext("Y");
+                            } else {
+                                emitter.onNext("N");
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            emitter.onNext(e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
+                        emitter.onNext(t.getMessage());
+                    }
+                });
+            }
+        });
+        Consumer<String> consumer = new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                loading.setVisibility(View.GONE);
+                if (s.equals("Y") || s.equals("N")) {
+
+                    if (s.equals("Y")) {
+                        EventBus.getDefault().post(new WpsdetailFinish("commit 提交成功"));
+                        finish();
+                    }
+                } else {
+                    ToastUtils.showShort(WpsDetailActivity.this, s);
+                }
+
+            }
+        };
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(consumer);
+
+
     }
     // 根据路径获得图片并压缩，返回bitmap用于显示
 //        private Bitmap getSmallBitmap(String filePath) {

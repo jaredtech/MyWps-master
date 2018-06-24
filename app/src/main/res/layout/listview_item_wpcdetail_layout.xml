@@ -14,7 +14,8 @@
     <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/wpcdetail_iv_item_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"/>
 
 
 </RelativeLayout>
