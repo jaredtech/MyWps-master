@@ -162,6 +162,8 @@ public class CommitActivity extends BaseActivity {
 //            rlCommit.setVisibility(View.INVISIBLE);
 //        }
 
+        etOpinion.setVisibility(View.INVISIBLE);
+        rlCommit.setVisibility(View.INVISIBLE);
         if (documentInfo.getStatus().equals("2") || documentInfo.getStatus().equals("3") || documentInfo.getStatus().equals("6")) {
             if (myAccount.equals(documentInfo.getNow_username()) || myAccount.equals(documentInfo.getNow_nickname())) {
                 etOpinion.setVisibility(View.VISIBLE);
@@ -171,8 +173,6 @@ public class CommitActivity extends BaseActivity {
                 }
             }
         }else if (documentInfo.getStatus().equals("5")) {
-            etOpinion.setVisibility(View.INVISIBLE);
-            rlCommit.setVisibility(View.INVISIBLE);
             getOpinionFromNet();
         }
 

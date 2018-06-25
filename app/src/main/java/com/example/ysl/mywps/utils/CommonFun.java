@@ -3,8 +3,10 @@ package com.example.ysl.mywps.utils;
 import android.content.Context;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.coremedia.iso.Hex;
 import com.orhanobut.logger.Logger;
 
 import java.io.ByteArrayInputStream;
@@ -240,25 +242,28 @@ public class CommonFun {
     }
 
     public static String getMD5Three(File path) {
-        BigInteger bi = null;
+        FileInputStream fileInputStream = null;
         try {
+            MessageDigest MD5 = MessageDigest.getInstance("MD5");
+            fileInputStream = new FileInputStream(path);
             byte[] buffer = new byte[8192];
-            int len = 0;
-            MessageDigest md = MessageDigest.getInstance("MD5");
-//            File f = new File(path);
-            FileInputStream fis = new FileInputStream(path);
-            while ((len = fis.read(buffer)) != -1) {
-                md.update(buffer, 0, len);
+            int length;
+            while ((length = fileInputStream.read(buffer)) != -1) {
+                MD5.update(buffer, 0, length);
             }
-            fis.close();
-            byte[] b = md.digest();
-            bi = new BigInteger(1, b);
-        } catch (NoSuchAlgorithmException e) {
+            return Hex.encodeHex(MD5.digest()).toLowerCase();
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if (fileInputStream != null){
+                    fileInputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        return bi.toString(16);
 
     }
 
